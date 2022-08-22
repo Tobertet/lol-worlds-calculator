@@ -17,4 +17,10 @@ export type Match = {
   winner: Team;
 };
 
-export type MatchResult = 1 | 0 | undefined;
+export type MatchStatus = 1 | 0 | undefined;
+
+export type MatchResult = {
+  result: MatchStatus;
+  loserSeed: number | undefined;
+  winnerSeed: number | undefined;
+};
