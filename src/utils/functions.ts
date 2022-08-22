@@ -1,4 +1,4 @@
-import { MatchResult, MatchStatus, ProcessedTeam, Team } from "../types";
+import { MatchResult, ProcessedTeam, Team } from "../types";
 
 export const getLowerSeed = (team1?: ProcessedTeam, team2?: ProcessedTeam) => {
   console.log(team1);

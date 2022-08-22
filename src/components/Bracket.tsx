@@ -12,13 +12,6 @@ type Props = {
   teams: Team[];
 };
 
-const undefinedTeam: ProcessedTeam = {
-  icon: "https://am-a.akamaihd.net/image?resize=36:36&f=http%3A%2F%2Fassets.lolesports.com%2Fwatch%2Fteam-tbd.png",
-  name: "TBD",
-  percentage: 0,
-  seed: 1,
-};
-
 export const Bracket: FC<Props> = ({ teams }) => {
   const [results, setResults] = useState<{ [index: number]: MatchResult }>({});
 
