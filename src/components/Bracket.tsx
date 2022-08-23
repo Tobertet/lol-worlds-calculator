@@ -1,10 +1,11 @@
 import { Match } from "./Match";
 import "./Bracket.css";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { MatchResult, ProcessedTeam, Team } from "../types";
 import {
   getHigherSeed,
   getLowerSeed,
+  getProbabilityForPosition,
   getWorldsProbabilityForTeam,
 } from "../utils/functions";
 
@@ -14,6 +15,10 @@ type Props = {
 
 export const Bracket: FC<Props> = ({ teams }) => {
   const [results, setResults] = useState<{ [index: number]: MatchResult }>({});
+
+  useEffect(() => {
+    console.log(getProbabilityForPosition(1, results));
+  }, [results]);
 
   const getPropsForMatch = (match: number) => ({
     onResult: (result: MatchResult) => {
