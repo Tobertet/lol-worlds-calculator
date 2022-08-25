@@ -51,6 +51,18 @@ export const Bracket: FC<Props> = ({ teams }) => {
         <div className="another">
           <div className="background">
             <div className="relative">
+              <h1
+                style={{
+                  color: "#eee",
+                  textAlign: "center",
+                  position: "absolute",
+                  top: "4%",
+                  width: "100%",
+                  fontSize: "2.5vw",
+                }}
+              >
+                Worlds Probability
+              </h1>
               <Match
                 left="9.765625%"
                 top="14.97395833%"

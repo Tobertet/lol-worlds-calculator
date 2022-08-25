@@ -17,7 +17,7 @@ const numberColors: { [index: number]: string } = {
 export const Position: FC<Props> = ({ teams, position, results }) => {
   return (
     <p style={{ display: "flex", alignItems: "center" }}>
-      <span style={{ fontSize: "6vw", color: numberColors[position] }}>
+      <span style={{ fontSize: "4vw", color: numberColors[position] }}>
         {position}.{" "}
       </span>
       {results.map((result) => (
@@ -25,7 +25,7 @@ export const Position: FC<Props> = ({ teams, position, results }) => {
           style={{
             display: "flex",
             flexDirection: "column",
-            padding: "0 5%",
+            padding: "0 4%",
             minWidth: "10%",
             alignItems: "center",
           }}
@@ -35,7 +35,7 @@ export const Position: FC<Props> = ({ teams, position, results }) => {
             src={getTeam(teams, result.seed)?.icon}
             alt="asd"
           />
-          <span style={{ fontSize: "1.5vw", textAlign: "center" }}>{`${
+          <span style={{ fontSize: "1vw", textAlign: "center" }}>{`${
             Math.round(result.probability * 10000) / 100
           }%`}</span>
         </div>
