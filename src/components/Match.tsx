@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useRef } from "react";
 import { MatchResult, MatchStatus, ProcessedTeam } from "../types";
 import "./Match.css";
 import { MatchTeam } from "./MatchTeam";
@@ -25,6 +25,14 @@ type Props = {
   status: MatchStatus;
 };
 
+const usePrevious = <T extends unknown>(value: T): T | undefined => {
+  const ref = useRef<T>();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+};
+
 export const Match: FC<Props> = ({
   top,
   left,
@@ -33,6 +41,34 @@ export const Match: FC<Props> = ({
   onResult,
   status,
 }) => {
+  const previousTeam1 = usePrevious(team1);
+  const previousTeam2 = usePrevious(team2);
+
+  useEffect(() => {
+    if (
+      team1?.seed !== previousTeam1?.seed ||
+      team2?.seed !== previousTeam2?.seed
+    ) {
+      if (status === 1 && team1 && team2) {
+        onResult &&
+          onResult({
+            result: 1,
+            winnerSeed: team2?.seed,
+            loserSeed: team1?.seed,
+          });
+      } else if (status === 0 && team1 && team2) {
+        onResult &&
+          onResult({
+            result: 0,
+            winnerSeed: team1?.seed,
+            loserSeed: team2?.seed,
+          });
+      } else {
+        onResult && onResult(emptyResult);
+      }
+    }
+  }, [team1, team2, onResult, previousTeam1, previousTeam2, status]);
+
   return (
     <div className="container" style={{ top, left }}>
       <MatchTeam
@@ -50,7 +86,7 @@ export const Match: FC<Props> = ({
             }
           }
         }}
-        selected={status === 0}
+        selected={team1 && team2 && status === 0}
       />
       <div className="divider" />
       <MatchTeam
@@ -68,7 +104,7 @@ export const Match: FC<Props> = ({
             }
           }
         }}
-        selected={status === 1}
+        selected={team1 && team2 && status === 1}
       />
     </div>
   );

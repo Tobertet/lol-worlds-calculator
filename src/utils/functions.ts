@@ -1,13 +1,18 @@
-import { MatchResult, ProcessedTeam, Team } from "../types";
+import { MatchResult, Team } from "../types";
 import { endingScenarios, PlayoffsScenario } from "./masterTable";
 
-export const getLowerSeed = (team1?: ProcessedTeam, team2?: ProcessedTeam) => {
-  console.log(team1);
-  console.log(team2);
+export const getLowerSeed = (team1?: Team, team2?: Team) => {
   return team1 && team2 ? (team1.seed > team2.seed ? team1 : team2) : undefined;
 };
 
-export const getHigherSeed = (team1?: ProcessedTeam, team2?: ProcessedTeam) =>
+export const getTeam = (teams: Team[], seed?: number): Team | undefined => {
+  if (seed === undefined) {
+    return;
+  }
+  return teams.find((item) => item.seed === seed);
+};
+
+export const getHigherSeed = (team1?: Team, team2?: Team) =>
   team1 && team2 ? (team1.seed > team2.seed ? team2 : team1) : undefined;
 
 const resultsToScenario = (results: {
@@ -69,12 +74,29 @@ export const getProbabilityForPosition = (
       { seed: parseInt(seed), probability: amount },
     ];
   }
-  return processedSeeds;
+  return processedSeeds
+    .filter((item) => item.probability > 0)
+    .sort((a, b) =>
+      a.probability > b.probability ? -1 : b.probability > a.probability ? 1 : 0
+    );
 };
 
 export const getWorldsProbabilityForTeam = (
   team: Team,
   results: { [index: number]: MatchResult }
 ): number => {
-  return 100;
+  const sixth = getProbabilityForPosition(6, results).find(
+    (x) => x.seed === team.seed
+  );
+  const fifth = getProbabilityForPosition(5, results).find(
+    (x) => x.seed === team.seed
+  );
+  let probability = 100;
+  if (sixth) {
+    probability -= sixth.probability * 100;
+  }
+  if (fifth) {
+    probability -= fifth.probability * 100;
+  }
+  return probability;
 };
