@@ -1,7 +1,7 @@
 import { Match } from "./Match";
 import "./Bracket.css";
 import { FC, useState } from "react";
-import { MatchResult, ProcessedTeam, Team } from "../types";
+import { MatchResult, ProcessedTeam } from "../types";
 import {
   getHigherSeed,
   getLowerSeed,
@@ -10,12 +10,12 @@ import {
   getWorldsProbabilityForTeam,
 } from "../utils/functions";
 import { Position } from "./Position";
+import Background from "../championships/lec/background.png";
+import { lecTeams as teams } from "../championships/lec/teams";
 
-type Props = {
-  teams: Team[];
-};
+type Props = {};
 
-export const Bracket: FC<Props> = ({ teams }) => {
+export const LecBracket: FC<Props> = () => {
   const [results, setResults] = useState<{ [index: number]: MatchResult }>({});
 
   const getPropsForMatch = (match: number) => ({
@@ -49,7 +49,12 @@ export const Bracket: FC<Props> = ({ teams }) => {
     <>
       <div className="wrapper">
         <div className="another">
-          <div className="background">
+          <div
+            className="background"
+            style={{
+              backgroundImage: `url(${Background})`,
+            }}
+          >
             <div className="relative">
               <h1
                 style={{
