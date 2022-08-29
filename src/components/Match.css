@@ -1,0 +1,14 @@
+.container {
+    width: 9.765625%;
+    height: 7.942708333%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.divider {
+    height: 1px;
+    width: 100%;
+    background-color: #1A76E3;
+}

@@ -1,0 +1,25 @@
+.wrapper {
+  max-width: 100%;
+}
+
+.another {
+  width: 100%;
+  padding-bottom: 75%;
+  position: relative
+}
+
+.relative {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+
+.background {
+    background-image: url('/public/background.png');
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-repeat: round;
+}
