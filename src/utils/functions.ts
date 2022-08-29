@@ -1,5 +1,4 @@
-import { MatchResult, Team } from "../types";
-import { endingScenarios, PlayoffsScenario } from "./masterTable";
+import { EndingScenarios, MatchResult, PlayoffsScenario, Team } from "../types";
 
 export const getLowerSeed = (team1?: Team, team2?: Team) => {
   return team1 && team2 ? (team1.seed > team2.seed ? team1 : team2) : undefined;
@@ -27,9 +26,10 @@ const resultsToScenario = (results: {
 
 export const getProbabilityForPosition = (
   position: number,
-  results: { [index: number]: MatchResult }
+  results: { [index: number]: MatchResult },
+  scenarios: EndingScenarios
 ): { seed: number; probability: number }[] => {
-  const seedScenarios = endingScenarios[position];
+  const seedScenarios = scenarios[position];
 
   const resultsScenario = resultsToScenario(results);
 
@@ -84,14 +84,16 @@ export const getProbabilityForPosition = (
 export const getWorldsProbabilityForTeam = (
   team: Team,
   results: { [index: number]: MatchResult },
+  scenarios: EndingScenarios,
   worldsSpots: number = 4
 ): number => {
   let accumulatedProbability = 0;
 
   for (let i = 1; i <= worldsSpots; i++) {
     accumulatedProbability +=
-      getProbabilityForPosition(i, results).find((x) => x.seed === team.seed)
-        ?.probability || 0;
+      getProbabilityForPosition(i, results, scenarios).find(
+        (x) => x.seed === team.seed
+      )?.probability || 0;
   }
 
   return Math.round(accumulatedProbability * 10000) / 100;

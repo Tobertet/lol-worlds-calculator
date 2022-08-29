@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { LecBracket } from "./components/LecBracket";
+import { LcsBracket } from "./components/LcsBracket";
 
-const App: FC = () => <LecBracket />;
+const App: FC = () => <LcsBracket />;
 
 export default App;

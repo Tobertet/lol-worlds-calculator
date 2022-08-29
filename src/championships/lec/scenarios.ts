@@ -1,18 +1,6 @@
-import { MatchStatus } from "../types";
+import { EndingScenarios } from "../../types";
 
-export type PlayoffsScenario = {
-  [match: number]: MatchStatus;
-};
-
-type SeedScenarios = {
-  [seed: number]: PlayoffsScenario[];
-};
-
-type EndingScenarios = {
-  [position: number]: SeedScenarios;
-};
-
-export const endingScenarios: EndingScenarios = {
+export const lecScenarios: EndingScenarios = {
   1: {
     1: [
       { 1: 1, 5: 0, 8: 0 },

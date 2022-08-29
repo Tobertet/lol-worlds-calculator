@@ -12,6 +12,7 @@ import {
 import { Position } from "./Position";
 import Background from "../championships/lec/background.png";
 import { lecTeams as teams } from "../championships/lec/teams";
+import { lecScenarios } from "../championships/lec/scenarios";
 
 type Props = {};
 
@@ -40,7 +41,7 @@ export const LecBracket: FC<Props> = () => {
     return (
       team && {
         ...team,
-        percentage: getWorldsProbabilityForTeam(team, results),
+        percentage: getWorldsProbabilityForTeam(team, results, lecScenarios),
       }
     );
   };
@@ -147,17 +148,17 @@ export const LecBracket: FC<Props> = () => {
               >
                 <Position
                   position={1}
-                  results={getProbabilityForPosition(1, results)}
+                  results={getProbabilityForPosition(1, results, lecScenarios)}
                   teams={teams}
                 />
                 <Position
                   position={2}
-                  results={getProbabilityForPosition(2, results)}
+                  results={getProbabilityForPosition(2, results, lecScenarios)}
                   teams={teams}
                 />
                 <Position
                   position={3}
-                  results={getProbabilityForPosition(3, results)}
+                  results={getProbabilityForPosition(3, results, lecScenarios)}
                   teams={teams}
                 />
               </div>

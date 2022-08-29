@@ -24,3 +24,15 @@ export type MatchResult = {
   loserSeed: number | undefined;
   winnerSeed: number | undefined;
 };
+
+export type PlayoffsScenario = {
+  [match: number]: MatchStatus;
+};
+
+export type SeedScenarios = {
+  [seed: number]: PlayoffsScenario[];
+};
+
+export type EndingScenarios = {
+  [position: number]: SeedScenarios;
+};
