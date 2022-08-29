@@ -17,8 +17,8 @@ const emptyResult: MatchResult = {
 };
 
 type Props = {
-  top: string;
-  left: string;
+  topPx: number;
+  leftPx: number;
   team1?: ProcessedTeam;
   team2?: ProcessedTeam;
   onResult?: (result: MatchResult) => void;
@@ -33,9 +33,12 @@ const usePrevious = <T extends unknown>(value: T): T | undefined => {
   return ref.current;
 };
 
+const getTop = (pixels: number) => (pixels * 100) / 768;
+const getLeft = (pixels: number) => (pixels * 100) / 1024;
+
 export const Match: FC<Props> = ({
-  top,
-  left,
+  topPx,
+  leftPx,
   team1,
   team2,
   onResult,
@@ -70,7 +73,10 @@ export const Match: FC<Props> = ({
   }, [team1, team2, onResult, previousTeam1, previousTeam2, status]);
 
   return (
-    <div className="container" style={{ top, left }}>
+    <div
+      className="container"
+      style={{ top: `${getTop(topPx)}%`, left: `${getLeft(leftPx)}%` }}
+    >
       <MatchTeam
         team={team1 || undefinedTeam}
         onSelect={() => {

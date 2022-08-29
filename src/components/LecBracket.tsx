@@ -69,29 +69,29 @@ export const LecBracket: FC<Props> = () => {
                 Worlds Probability
               </h1>
               <Match
-                left="9.765625%"
-                top="14.97395833%"
+                leftPx={100}
+                topPx={115}
                 team1={getTeamWithWorldsPercentage(4)}
                 team2={getTeamWithWorldsPercentage(1)}
                 {...getPropsForMatch(1)}
               />
               <Match
-                left="9.765625%"
-                top="27.60416667%"
+                leftPx={100}
+                topPx={212}
                 team1={getTeamWithWorldsPercentage(2)}
                 team2={getTeamWithWorldsPercentage(3)}
                 {...getPropsForMatch(2)}
               />
               <Match
-                left="9.765625%"
-                top="48.046875%"
+                leftPx={100}
+                topPx={369}
                 team1={getTeamWithWorldsPercentage(5)}
                 team2={getTeamWithWorldsPercentage(6)}
                 {...getPropsForMatch(3)}
               />
               <Match
-                left="27.44140625%"
-                top="48.046875%"
+                leftPx={281}
+                topPx={369}
                 team1={getTeamWithWorldsPercentage(
                   getLowerSeed(
                     getTeam(teams, results[1]?.loserSeed),
@@ -102,15 +102,15 @@ export const LecBracket: FC<Props> = () => {
                 {...getPropsForMatch(4)}
               />
               <Match
-                left="45.1171875%"
-                top="20.96354167%"
+                leftPx={462}
+                topPx={161}
                 team1={getTeamWithWorldsPercentage(results[1]?.winnerSeed)}
                 team2={getTeamWithWorldsPercentage(results[2]?.winnerSeed)}
                 {...getPropsForMatch(5)}
               />
               <Match
-                left="45.1171875%"
-                top="48.046875%"
+                leftPx={462}
+                topPx={369}
                 team1={getTeamWithWorldsPercentage(
                   getHigherSeed(
                     getTeam(teams, results[1]?.loserSeed),
@@ -121,15 +121,15 @@ export const LecBracket: FC<Props> = () => {
                 {...getPropsForMatch(6)}
               />
               <Match
-                left="62.79296875%"
-                top="33.85416667%"
+                leftPx={643}
+                topPx={260}
                 team1={getTeamWithWorldsPercentage(results[5]?.loserSeed)}
                 team2={getTeamWithWorldsPercentage(results[6]?.winnerSeed)}
                 {...getPropsForMatch(7)}
               />
               <Match
-                left="80.46875%"
-                top="20.96354167%"
+                leftPx={824}
+                topPx={161}
                 team1={getTeamWithWorldsPercentage(results[5]?.winnerSeed)}
                 team2={getTeamWithWorldsPercentage(results[7]?.winnerSeed)}
                 {...getPropsForMatch(8)}
