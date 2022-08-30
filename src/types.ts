@@ -36,3 +36,5 @@ export type SeedScenarios = {
 export type EndingScenarios = {
   [position: number]: SeedScenarios;
 };
+
+export type ChampionshipID = "lec" | "lcs" | "lpl";

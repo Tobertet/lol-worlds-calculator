@@ -1,11 +1,12 @@
 import { FC, ReactNode, useState } from "react";
+import { ChampionshipID } from "../types";
 
 type Props = {
-  tabs: { id: "lec" | "lcs"; icon: string; content: ReactNode }[];
+  tabs: { id: ChampionshipID; icon: string; content: ReactNode }[];
 };
 
 export const Tabs: FC<Props> = ({ tabs }) => {
-  const [selectedTab, setSelectedTab] = useState<"lec" | "lcs">("lec");
+  const [selectedTab, setSelectedTab] = useState<ChampionshipID>("lpl");
   return (
     <div style={{ marginTop: "104px" }}>
       <div

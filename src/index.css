@@ -12,9 +12,16 @@ code {
     monospace;
 }
 
-@media only screen and (orientation:portrait){
-  body {
+@media screen and (orientation: portrait) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    max-width: 100vh;
     height: 100vw;
-    transform: rotate(90deg);
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
   }
 }
