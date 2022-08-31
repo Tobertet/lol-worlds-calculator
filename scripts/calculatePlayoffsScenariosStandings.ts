@@ -1,20 +1,15 @@
 import { generateScenarios } from "./generateScenarios";
-
-type Match = {
-  seed1: number;
-  seed2: number;
-  result: 1 | 0;
-};
+import { Match, ScenarioStandings } from "./types";
 
 const getLoser = (match: Match) =>
   match.result === 1 ? match.seed1 : match.seed2;
 const getWinner = (match: Match) =>
   match.result === 1 ? match.seed2 : match.seed1;
 
-export const calculatePlayoffsResults = () => {
+export const calculatePlayoffsScenariosStandings = () => {
   const scenarios = generateScenarios(12);
 
-  return scenarios.map((results) => {
+  return scenarios.map<ScenarioStandings>((results) => {
     const match1: Match = { seed1: 9, seed2: 8, result: results[0] };
     const match2: Match = { seed1: 7, seed2: 10, result: results[1] };
     const match3: Match = {
@@ -69,7 +64,7 @@ export const calculatePlayoffsResults = () => {
     };
     return {
       scenario: results,
-      results: {
+      standings: {
         1: getWinner(match12),
         2: getLoser(match12),
         3: getLoser(match11),
