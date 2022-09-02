@@ -23,7 +23,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "generate": "tsc scripts/*.ts && node scripts/generate.js",
-    "generate:lpl": "tsc scripts/*.ts && node scripts/generate.js lpl"
+    "generate:lpl": "tsc scripts/*.ts && node scripts/generate.js lpl",
+    "generate:lec": "tsc scripts/*.ts && node scripts/generate.js lec"
   },
   "eslintConfig": {
     "extends": [

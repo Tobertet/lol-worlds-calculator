@@ -1,14 +1,17 @@
 import { generatePositionScenarios } from "./generatePositionScenarios";
-import { BracketConfiguration } from "./types";
+import { ChampionshipConfiguration } from "./types";
 import { lplConfiguration } from "./configurations/lpl";
 import { argv } from "process";
+import { lecConfiguration } from "./configurations/lec";
 
 type AvailableConfigurations = {
-  lpl: BracketConfiguration;
+  lpl: ChampionshipConfiguration;
+  lec: ChampionshipConfiguration;
 };
 
 const availableConfigurations: AvailableConfigurations = {
   lpl: lplConfiguration,
+  lec: lecConfiguration,
 };
 
 if (!argv[2]) {

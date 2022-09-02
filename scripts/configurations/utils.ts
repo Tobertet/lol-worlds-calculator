@@ -8,3 +8,9 @@ export const getWinner = (match: Match) =>
 
 export const getResult = (scenario: CompleteScenario, match: number) =>
   scenario[match - 1];
+
+export const getLowerSeed = (seed1: number, seed2: number) =>
+  seed1 > seed2 ? seed1 : seed2;
+
+export const getHigherSeed = (seed1: number, seed2: number) =>
+  seed1 > seed2 ? seed2 : seed1;

@@ -2,7 +2,7 @@ import * as fs from "fs";
 import { calculatePointsStandings } from "./calculatePointsStandings";
 import { minimizeScenarios } from "./minimizeScenarios";
 import {
-  BracketConfiguration,
+  ChampionshipConfiguration,
   PositionScenarios,
   CompleteScenario,
   ReducedScenario,
@@ -29,7 +29,7 @@ const completeScenario2ReducedScenario = (
 };
 
 export const generatePositionScenarios = (
-  configuration: BracketConfiguration,
+  configuration: ChampionshipConfiguration,
   {
     positions = 6,
     seeds = configuration.totalTeams,

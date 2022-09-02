@@ -1,5 +1,5 @@
 import {
-  BracketConfiguration,
+  ChampionshipConfiguration,
   BracketSolver,
   ChampionshipPointsResult,
   ChampionshipPointsTable,
@@ -159,7 +159,7 @@ const lplPointsSolver: PointsSolver = (playoffsResult) => {
   };
 };
 
-export const lplConfiguration: BracketConfiguration = {
+export const lplConfiguration: ChampionshipConfiguration = {
   totalMatches: 12,
   totalTeams: 10,
   bracketSolver: lplBracketSolver,

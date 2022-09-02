@@ -20,7 +20,7 @@ type SolvedScenario = {
 export type BracketSolver = (scenario: CompleteScenario) => SolvedScenario;
 export type PointsSolver = (scenario: SolvedScenario) => SolvedScenario;
 
-export type BracketConfiguration = {
+export type ChampionshipConfiguration = {
   totalMatches: number;
   totalTeams: number;
   bracketSolver: BracketSolver;

@@ -1,8 +1,8 @@
 import { calculateAllCompleteScenarios } from "./calculateAllCompleteScenarios";
-import { BracketConfiguration } from "./types";
+import { ChampionshipConfiguration } from "./types";
 
 export const calculateBracketStandings = ({
   totalMatches,
   bracketSolver,
-}: BracketConfiguration) =>
+}: ChampionshipConfiguration) =>
   calculateAllCompleteScenarios(totalMatches).map(bracketSolver);

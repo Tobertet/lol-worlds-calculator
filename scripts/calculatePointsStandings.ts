@@ -1,5 +1,6 @@
 import { calculateBracketStandings } from "./calculateBracketStandings";
-import { BracketConfiguration } from "./types";
+import { ChampionshipConfiguration } from "./types";
 
-export const calculatePointsStandings = (configuration: BracketConfiguration) =>
-  calculateBracketStandings(configuration).map(configuration.pointsSolver);
+export const calculatePointsStandings = (
+  configuration: ChampionshipConfiguration
+) => calculateBracketStandings(configuration).map(configuration.pointsSolver);
