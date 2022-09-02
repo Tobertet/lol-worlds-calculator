@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { ProcessedTeam } from "../types";
+import { toPercentage } from "../utils/functions";
 
 type Props = {
   team: ProcessedTeam;
@@ -63,7 +64,7 @@ export const MatchTeam: FC<Props> = ({ team, onSelect, selected }) => (
         textAlign: "end",
       }}
     >
-      {team.percentage}%
+      {toPercentage(team.percentage)}
     </p>
   </div>
 );

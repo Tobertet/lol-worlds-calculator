@@ -24,6 +24,9 @@ const resultsToScenario = (results: {
   return scenario;
 };
 
+export const toPercentage = (value: number) =>
+  `${Math.round(value * 10000) / 100}%`;
+
 export const getProbabilityForPosition = (
   position: number,
   results: { [index: number]: MatchResult },
@@ -71,6 +74,32 @@ export const getProbabilityForPosition = (
     );
 };
 
+export const getProbabilityForPositions = (
+  positions: number[],
+  results: { [index: number]: MatchResult },
+  scenarios: EndingScenarios
+): { seed: number; probability: number }[] =>
+  positions
+    .map((position) => getProbabilityForPosition(position, results, scenarios))
+    .reduce((prev, curr) => {
+      let acc = [...prev];
+      for (const item of curr) {
+        const index = prev.findIndex((x) => x.seed === item.seed);
+        if (index >= 0) {
+          acc[index] = {
+            ...prev[index],
+            probability: prev[index].probability + item.probability,
+          };
+        } else {
+          acc = [...acc, { ...item }];
+        }
+      }
+      return acc;
+    }, [])
+    .sort((a, b) =>
+      a.probability > b.probability ? -1 : b.probability > a.probability ? 1 : 0
+    );
+
 export const getWorldsProbabilityForTeam = (
   team: Team,
   results: { [index: number]: MatchResult },
@@ -86,7 +115,7 @@ export const getWorldsProbabilityForTeam = (
       )?.probability || 0;
   }
 
-  return Math.round(accumulatedProbability * 10000) / 100;
+  return accumulatedProbability;
 };
 
 const intersect = (scenarios: PlayoffsScenario[]): boolean => {

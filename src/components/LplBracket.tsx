@@ -2,7 +2,11 @@ import { Match } from "./Match";
 import "./Bracket.css";
 import { FC, useState } from "react";
 import { MatchResult, ProcessedTeam } from "../types";
-import { getProbabilityForPosition, getTeam } from "../utils/functions";
+import {
+  getProbabilityForPosition,
+  getProbabilityForPositions,
+  getTeam,
+} from "../utils/functions";
 import { Position } from "./Position";
 import Background from "../championships/lpl/background.png";
 import { lplTeams as teams } from "../championships/lpl/teams";
@@ -170,7 +174,11 @@ export const LplBracket: FC<Props> = () => {
                 />
                 <Position
                   position="RQ"
-                  results={getProbabilityForPosition(3, results, lplScenarios)}
+                  results={getProbabilityForPositions(
+                    [3, 4, 5, 6],
+                    results,
+                    lplScenarios
+                  )}
                   teams={teams}
                 />
               </div>

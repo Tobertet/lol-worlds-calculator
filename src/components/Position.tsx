@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Team } from "../types";
-import { getTeam } from "../utils/functions";
+import { getTeam, toPercentage } from "../utils/functions";
 
 type Props = {
   position: number | string;
@@ -49,9 +49,9 @@ export const Position: FC<Props> = ({ teams, position, results }) => {
             src={getTeam(teams, result.seed)?.icon}
             alt="asd"
           />
-          <span style={{ fontSize: "1vw", textAlign: "center" }}>{`${
-            Math.round(result.probability * 10000) / 100
-          }%`}</span>
+          <span style={{ fontSize: "1vw", textAlign: "center" }}>
+            {toPercentage(result.probability)}
+          </span>
         </div>
       ))}
     </p>
