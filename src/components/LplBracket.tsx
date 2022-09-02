@@ -6,6 +6,7 @@ import {
   getProbabilityForPosition,
   getProbabilityForPositions,
   getTeam,
+  getWorldsProbabilityForTeam,
 } from "../utils/functions";
 import { Position } from "./Position";
 import Background from "../championships/lpl/background.png";
@@ -39,7 +40,14 @@ export const LplBracket: FC<Props> = () => {
     return (
       team && {
         ...team,
-        percentage: 0,
+        percentage: getWorldsProbabilityForTeam(team, results, lplScenarios, {
+          1: 1,
+          2: 1,
+          3: 0.25,
+          4: 0.25,
+          5: 0.25,
+          6: 0.25,
+        }),
       }
     );
   };

@@ -39,7 +39,11 @@ export const LcsBracket: FC<Props> = () => {
     return (
       team && {
         ...team,
-        percentage: getWorldsProbabilityForTeam(team, results, lcsScenarios, 3),
+        percentage: getWorldsProbabilityForTeam(team, results, lcsScenarios, {
+          1: 1,
+          2: 1,
+          3: 1,
+        }),
       }
     );
   };

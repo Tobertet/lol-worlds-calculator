@@ -42,10 +42,11 @@ export const Position: FC<Props> = ({ teams, position, results }) => {
             padding: "0 4%",
             minWidth: "10%",
             alignItems: "center",
+            height: "100%",
           }}
         >
           <img
-            style={{ width: "100%", height: "auto", objectFit: "contain" }}
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
             src={getTeam(teams, result.seed)?.icon}
             alt="asd"
           />

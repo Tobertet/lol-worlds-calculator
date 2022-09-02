@@ -104,15 +104,15 @@ export const getWorldsProbabilityForTeam = (
   team: Team,
   results: { [index: number]: MatchResult },
   scenarios: EndingScenarios,
-  worldsSpots: number = 4
+  weights: { [position: number]: number }
 ): number => {
   let accumulatedProbability = 0;
 
-  for (let i = 1; i <= worldsSpots; i++) {
+  for (const position of Object.keys(weights)) {
     accumulatedProbability +=
-      getProbabilityForPosition(i, results, scenarios).find(
+      (getProbabilityForPosition(parseInt(position), results, scenarios).find(
         (x) => x.seed === team.seed
-      )?.probability || 0;
+      )?.probability || 0) * weights[parseInt(position)];
   }
 
   return accumulatedProbability;

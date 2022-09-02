@@ -41,7 +41,12 @@ export const LecBracket: FC<Props> = () => {
     return (
       team && {
         ...team,
-        percentage: getWorldsProbabilityForTeam(team, results, lecScenarios, 4),
+        percentage: getWorldsProbabilityForTeam(team, results, lecScenarios, {
+          1: 1,
+          2: 1,
+          3: 1,
+          4: 1,
+        }),
       }
     );
   };
