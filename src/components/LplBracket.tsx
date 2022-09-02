@@ -43,10 +43,10 @@ export const LplBracket: FC<Props> = () => {
         percentage: getWorldsProbabilityForTeam(team, results, lplScenarios, {
           1: 1,
           2: 1,
-          3: 0.25,
+          3: 0.5,
           4: 0.25,
-          5: 0.25,
-          6: 0.25,
+          5: 0.125,
+          6: 0.125,
         }),
       }
     );
