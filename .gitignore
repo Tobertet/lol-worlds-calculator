@@ -13,6 +13,7 @@
 
 # compiled
 scripts/**/**.js
+scripts/**/**.json
 
 # misc
 .DS_Store
