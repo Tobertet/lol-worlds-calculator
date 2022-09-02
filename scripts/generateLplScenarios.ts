@@ -1,59 +1,48 @@
-import {
-  getEssentialPrimeImplicants,
-  getPrimeImplicants,
-} from "quine-mccluskey/dist";
-import Implicant from "quine-mccluskey/dist/implicant";
 import { calculateChampionshipPointsStandings } from "./calculateChampionshipPointsStandings";
-import { EndingScenarios, ReducedScenario } from "./types";
+import { EndingScenarios, PlayoffsScenario, ReducedScenario } from "./types";
 import * as fs from "fs";
+import { minimizeScenarios } from "./minimizeScenarios";
 
 const scenarioStandings = calculateChampionshipPointsStandings();
 
-const binary2Number = (binaryArray: number[]) => {
-  const binaryString = binaryArray.join("");
-  return parseInt(binaryString, 2);
-};
-
-const implicants2Scenarios = (implicants: Implicant[]) =>
-  implicants.map((implicant) => {
-    const binaryCommon = implicant
-      .getCommonBits()
-      .toString(2)
-      .padStart(12, "0");
-    const binaryUncommon = implicant
-      .getUncommonBits()
-      .toString(2)
-      .padStart(12, "0");
-
-    let scenario: ReducedScenario = {};
-    for (let i = 0; i < 12; i++) {
-      if (binaryCommon.charAt(i) === "1") {
-        scenario = { ...scenario, [i + 1]: 1 };
-      } else if (binaryUncommon.charAt(i) === "0") {
-        scenario = { ...scenario, [i + 1]: 0 };
-      }
+const scenario2ReducedScenario = (
+  scenario: PlayoffsScenario
+): ReducedScenario => {
+  let reducedScenario = {};
+  for (let i = 0; i < 12; i++) {
+    if (scenario[i] === 1) {
+      reducedScenario = { ...reducedScenario, [i + 1]: 1 };
+    } else if (scenario[i] === 0) {
+      reducedScenario = { ...reducedScenario, [i + 1]: 0 };
     }
-    return scenario;
-  });
+  }
+  return reducedScenario;
+};
 
 const calculateEndingScenarios = (): EndingScenarios => {
   let endingScenarios: EndingScenarios = {};
   for (let position = 1; position <= 6; position++) {
     endingScenarios[position] = {};
     for (let seed = 1; seed <= 10; seed++) {
-      let allScenarios: number[] = [];
+      let allScenarios: PlayoffsScenario[] = [];
+      // let allScenarios: number[] = [];
       for (const item of scenarioStandings) {
         if (item.standings[position - 1] === seed) {
-          allScenarios = [...allScenarios, binary2Number(item.scenario)];
+          // allScenarios = [...allScenarios, binary2Number(item.scenario)];
+          allScenarios = [...allScenarios, item.scenario];
         }
       }
-      endingScenarios[position][seed] = implicants2Scenarios(
-        getEssentialPrimeImplicants(
-          getEssentialPrimeImplicants(getPrimeImplicants(allScenarios, []))
-        )
-      );
+      // endingScenarios[position][seed] = implicants2Scenarios(
+      //   getEssentialPrimeImplicants(
+      //     getEssentialPrimeImplicants(getPrimeImplicants(allScenarios, []))
+      //   )
+      // );
       console.log(
-        `pos: ${position}, seed: ${seed} [${endingScenarios[position][seed].length}]`
+        `Generating scenarios for position: ${position} and seed ${seed}`
+      );
+      endingScenarios[position][seed] = minimizeScenarios(
+        allScenarios.map(scenario2ReducedScenario),
+        12
       );
     }
   }
