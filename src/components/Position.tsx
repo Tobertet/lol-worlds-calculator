@@ -3,21 +3,35 @@ import { Team } from "../types";
 import { getTeam } from "../utils/functions";
 
 type Props = {
-  position: number;
+  position: number | string;
   results: { seed: number; probability: number }[];
   teams: Team[];
 };
 
-const numberColors: { [index: number]: string } = {
+const numberColors: { [index: number | string]: string } = {
   1: "#DEC43E",
   2: "#a7a59a",
   3: "#bb5b09",
+  RQ: "#bb5b09",
 };
 
 export const Position: FC<Props> = ({ teams, position, results }) => {
   return (
-    <p style={{ display: "flex", alignItems: "center" }}>
-      <span style={{ fontSize: "4vw", color: numberColors[position] }}>
+    <p
+      style={{
+        display: "grid",
+        gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ",
+        alignItems: "center",
+        columnGap: "1%",
+      }}
+    >
+      <span
+        style={{
+          fontSize: "4vw",
+          color: numberColors[position],
+          textAlign: "end",
+        }}
+      >
         {position}.{" "}
       </span>
       {results.map((result) => (

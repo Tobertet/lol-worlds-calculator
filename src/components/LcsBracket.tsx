@@ -156,10 +156,10 @@ export const LcsBracket: FC<Props> = () => {
                 style={{
                   position: "absolute",
                   left: "20%",
-                  bottom: "10%",
+                  bottom: "5%",
                   color: "white",
                   maxHeight: "30%",
-                  width: "40%",
+                  width: "60%",
                 }}
               >
                 <Position

@@ -6,7 +6,7 @@ type Props = {
 };
 
 export const Tabs: FC<Props> = ({ tabs }) => {
-  const [selectedTab, setSelectedTab] = useState<ChampionshipID>("lpl");
+  const [selectedTab, setSelectedTab] = useState<ChampionshipID>("lec");
   return (
     <div style={{ marginTop: "104px" }}>
       <div

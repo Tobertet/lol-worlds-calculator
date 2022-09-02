@@ -2,11 +2,7 @@ import { Match } from "./Match";
 import "./Bracket.css";
 import { FC, useState } from "react";
 import { MatchResult, ProcessedTeam } from "../types";
-import {
-  getProbabilityForPosition,
-  getTeam,
-  getWorldsProbabilityForTeam,
-} from "../utils/functions";
+import { getProbabilityForPosition, getTeam } from "../utils/functions";
 import { Position } from "./Position";
 import Background from "../championships/lpl/background.png";
 import { lplTeams as teams } from "../championships/lpl/teams";
@@ -39,7 +35,7 @@ export const LplBracket: FC<Props> = () => {
     return (
       team && {
         ...team,
-        percentage: getWorldsProbabilityForTeam(team, results, lplScenarios),
+        percentage: 0,
       }
     );
   };
@@ -156,10 +152,10 @@ export const LplBracket: FC<Props> = () => {
                 style={{
                   position: "absolute",
                   left: "20%",
-                  bottom: "10%",
+                  bottom: "20%",
                   color: "white",
                   maxHeight: "30%",
-                  width: "40%",
+                  width: "60%",
                 }}
               >
                 <Position
@@ -173,7 +169,7 @@ export const LplBracket: FC<Props> = () => {
                   teams={teams}
                 />
                 <Position
-                  position={3}
+                  position="RQ"
                   results={getProbabilityForPosition(3, results, lplScenarios)}
                   teams={teams}
                 />

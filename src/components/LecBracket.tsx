@@ -41,7 +41,7 @@ export const LecBracket: FC<Props> = () => {
     return (
       team && {
         ...team,
-        percentage: getWorldsProbabilityForTeam(team, results, lecScenarios),
+        percentage: getWorldsProbabilityForTeam(team, results, lecScenarios, 4),
       }
     );
   };
@@ -143,7 +143,7 @@ export const LecBracket: FC<Props> = () => {
                   bottom: "10%",
                   color: "white",
                   maxHeight: "30%",
-                  width: "40%",
+                  width: "60%",
                 }}
               >
                 <Position
