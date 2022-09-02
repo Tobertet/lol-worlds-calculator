@@ -1,19 +1,4 @@
-import { ReducedScenario, MatchResult } from "./types";
-
-type CompleteScenario = MatchResult[];
-
-export const complete2Reduced = (
-  completeScenario: CompleteScenario
-): ReducedScenario => {
-  let reducedScenario: ReducedScenario = {};
-  for (const index in completeScenario) {
-    reducedScenario = {
-      ...reducedScenario,
-      [parseInt(index) + 1]: completeScenario[index],
-    };
-  }
-  return reducedScenario;
-};
+import { ReducedScenario } from "./types";
 
 const canBeUnited = (
   scenario1: ReducedScenario,

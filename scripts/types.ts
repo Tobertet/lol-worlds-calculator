@@ -1,36 +1,50 @@
 export type MatchResult = 0 | 1;
 
-export type Scenario = MatchResult[];
+export type CompleteScenario = MatchResult[];
 
 export type Match = {
   seed1: number;
   seed2: number;
-  result: 1 | 0;
+  result: MatchResult;
 };
 
 export type Standings = {
   [position: number]: number;
 };
 
-export type ScenarioStandings = {
-  scenario: Scenario;
+type SolvedScenario = {
+  scenario: CompleteScenario;
   standings: Standings;
+};
+
+export type BracketSolver = (scenario: CompleteScenario) => SolvedScenario;
+export type PointsSolver = (scenario: SolvedScenario) => SolvedScenario;
+
+export type BracketConfiguration = {
+  totalMatches: number;
+  totalTeams: number;
+  bracketSolver: BracketSolver;
+  pointsSolver: PointsSolver;
+};
+
+export type ChampionshipPointsTable = {
+  [position: number]: number;
+};
+
+export type ChampionshipPointsResult = {
+  seed: number;
+  summerPoints: number;
+  championshipPoints: number;
 };
 
 export type ReducedScenario = {
   [match: number]: MatchResult;
 };
 
-export type MatchStatus = 1 | 0 | undefined;
-
-export type PlayoffsScenario = {
-  [match: number]: MatchStatus;
+type SeedScenarios = {
+  [seed: number]: ReducedScenario[];
 };
 
-export type SeedScenarios = {
-  [seed: number]: PlayoffsScenario[];
-};
-
-export type EndingScenarios = {
+export type PositionScenarios = {
   [position: number]: SeedScenarios;
 };

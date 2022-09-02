@@ -12,7 +12,7 @@
 /build
 
 # compiled
-scripts/*.js
+scripts/**/**.js
 
 # misc
 .DS_Store
