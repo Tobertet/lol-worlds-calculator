@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/lol-worlds-calculator/static/css/main.64caa4cc.css",
-    "main.js": "/lol-worlds-calculator/static/js/main.2c36202a.js",
+    "main.css": "/lol-worlds-calculator/static/css/main.2b2a1d31.css",
+    "main.js": "/lol-worlds-calculator/static/js/main.842c55c2.js",
     "static/js/787.8c4cabcf.chunk.js": "/lol-worlds-calculator/static/js/787.8c4cabcf.chunk.js",
     "static/media/background.png": "/lol-worlds-calculator/static/media/background.a95258317207b9062df1.png",
     "index.html": "/lol-worlds-calculator/index.html",
-    "main.64caa4cc.css.map": "/lol-worlds-calculator/static/css/main.64caa4cc.css.map",
-    "main.2c36202a.js.map": "/lol-worlds-calculator/static/js/main.2c36202a.js.map",
+    "main.2b2a1d31.css.map": "/lol-worlds-calculator/static/css/main.2b2a1d31.css.map",
+    "main.842c55c2.js.map": "/lol-worlds-calculator/static/js/main.842c55c2.js.map",
     "787.8c4cabcf.chunk.js.map": "/lol-worlds-calculator/static/js/787.8c4cabcf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.64caa4cc.css",
-    "static/js/main.2c36202a.js"
+    "static/css/main.2b2a1d31.css",
+    "static/js/main.842c55c2.js"
   ]
 }
