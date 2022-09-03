@@ -1,5 +1,6 @@
 import { FC, ReactNode, useState } from "react";
 import { ChampionshipID } from "../types";
+import "./Tabs.css";
 
 type Props = {
   tabs: { id: ChampionshipID; icon: string; content: ReactNode }[];
@@ -7,15 +8,16 @@ type Props = {
 
 export const Tabs: FC<Props> = ({ tabs }) => {
   const [selectedTab, setSelectedTab] = useState<ChampionshipID>("lec");
+
   return (
-    <div style={{ marginTop: "104px" }}>
+    <div className="margin">
       <div
+        className="tabs"
         style={{
           display: "flex",
           justifyContent: "space-evenly",
           background: "#131313",
           position: "fixed",
-          top: 0,
           width: "100%",
           zIndex: 1,
         }}

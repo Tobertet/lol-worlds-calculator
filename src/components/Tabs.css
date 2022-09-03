@@ -1,0 +1,20 @@
+.margin {
+    margin-top: 104px;
+}
+
+.tabs {
+    top: 0;
+}
+
+
+@media screen and (max-width: 786px) {
+    .margin {
+    margin-top: 60px;
+    margin-bottom: 104px;
+    }
+    
+    .tabs {
+        bottom: 0;
+        top: unset;
+    }
+}
