@@ -139,6 +139,28 @@ export const LckBracket: FC<Props> = () => {
                   )}
                   teams={teams}
                 />
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontSize: "1vw",
+                    color: "#ccc",
+                  }}
+                >
+                  *The 1st and 2nd teams in Regional Qualifiers have{" "}
+                  <strong
+                    style={{
+                      color: "#1A76E3",
+                      fontSize: "1.4vw",
+                    }}
+                  >
+                    75%
+                  </strong>{" "}
+                  of scenarios to make it to worlds while the 3rd and 4th have{" "}
+                  <strong style={{ color: "#1A76E3", fontSize: "1.4vw" }}>
+                    25%
+                  </strong>
+                  .
+                </p>
               </div>
             </div>
           </div>
