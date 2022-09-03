@@ -17,12 +17,13 @@ const numberColors: { [index: number | string]: string } = {
 
 export const Position: FC<Props> = ({ teams, position, results }) => {
   return (
-    <p
+    <div
       style={{
         display: "grid",
         gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ",
         alignItems: "center",
         columnGap: "1%",
+        marginBlock: "1%",
       }}
     >
       <span
@@ -36,6 +37,7 @@ export const Position: FC<Props> = ({ teams, position, results }) => {
       </span>
       {results.map((result) => (
         <div
+          key={result.seed}
           style={{
             display: "flex",
             flexDirection: "column",
@@ -55,6 +57,6 @@ export const Position: FC<Props> = ({ teams, position, results }) => {
           </span>
         </div>
       ))}
-    </p>
+    </div>
   );
 };
