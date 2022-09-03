@@ -4,17 +4,20 @@ import { lplConfiguration } from "./configurations/lpl";
 import { argv } from "process";
 import { lecConfiguration } from "./configurations/lec";
 import { lcsConfiguration } from "./configurations/lcs";
+import { lckConfiguration } from "./configurations/lck";
 
 type AvailableConfigurations = {
   lpl: ChampionshipConfiguration;
   lec: ChampionshipConfiguration;
   lcs: ChampionshipConfiguration;
+  lck: ChampionshipConfiguration;
 };
 
 const availableConfigurations: AvailableConfigurations = {
   lpl: lplConfiguration,
   lec: lecConfiguration,
   lcs: lcsConfiguration,
+  lck: lckConfiguration,
 };
 
 if (!argv[2]) {

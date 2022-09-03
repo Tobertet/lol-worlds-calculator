@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { LckBracket } from "./components/LckBracket";
 import { LcsBracket } from "./components/LcsBracket";
 import { LecBracket } from "./components/LecBracket";
 import { LplBracket } from "./components/LplBracket";
@@ -21,6 +22,11 @@ const App: FC = () => (
         id: "lpl",
         icon: "https://am-a.akamaihd.net/image?resize=60:&f=http%3A%2F%2Fstatic.lolesports.com%2Fleagues%2F1592516115322_LPL-01-FullonDark.png",
         content: <LplBracket />,
+      },
+      {
+        id: "lck",
+        icon: "https://am-a.akamaihd.net/image?resize=60:&f=http%3A%2F%2Fstatic.lolesports.com%2Fleagues%2Flck-color-on-black.png",
+        content: <LckBracket />,
       },
     ]}
   />

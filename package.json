@@ -25,7 +25,8 @@
     "generate": "tsc scripts/*.ts && node scripts/generate.js",
     "generate:lpl": "tsc scripts/*.ts && node scripts/generate.js lpl",
     "generate:lec": "tsc scripts/*.ts && node scripts/generate.js lec",
-    "generate:lcs": "tsc scripts/*.ts && node scripts/generate.js lcs"
+    "generate:lcs": "tsc scripts/*.ts && node scripts/generate.js lcs",
+    "generate:lck": "tsc scripts/*.ts && node scripts/generate.js lck"
   },
   "eslintConfig": {
     "extends": [
