@@ -11,30 +11,26 @@ export type ProcessedTeam = {
   percentage: number;
 };
 
-export type Match = {
-  team1: Team;
-  team2: Team;
-  winner: Team;
-};
+export type MatchResult = 1 | 0 | undefined;
 
-export type MatchStatus = 1 | 0 | undefined;
-
-export type MatchResult = {
-  result: MatchStatus;
-  loserSeed: number | undefined;
-  winnerSeed: number | undefined;
-};
-
-export type PlayoffsScenario = {
-  [match: number]: MatchStatus;
+export type ReducedScenario = {
+  [match: number]: MatchResult;
 };
 
 export type SeedScenarios = {
-  [seed: number]: PlayoffsScenario[];
+  [seed: number]: ReducedScenario[];
 };
 
-export type EndingScenarios = {
+export type PositionScenarios = {
   [position: number]: SeedScenarios;
 };
 
 export type ChampionshipID = "lec" | "lcs" | "lpl" | "lck";
+
+export type Match = {
+  seed1?: number;
+  seed2?: number;
+  result: MatchResult;
+};
+
+export type CompleteScenario = MatchResult[];

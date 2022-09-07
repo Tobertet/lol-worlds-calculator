@@ -1,6 +1,6 @@
-import { EndingScenarios } from "../../types";
+import { PositionScenarios } from "../../types";
 
-export const lckScenarios: EndingScenarios = {
+export const lckScenarios: PositionScenarios = {
   "1": {
     "1": [{ "3": 0, "5": 0 }],
     "2": [{ "4": 0, "5": 1 }],

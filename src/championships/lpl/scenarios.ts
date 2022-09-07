@@ -1,6 +1,6 @@
-import { EndingScenarios } from "../../types";
+import { PositionScenarios } from "../../types";
 
-export const lplScenarios: EndingScenarios = {
+export const lplScenarios: PositionScenarios = {
   "1": {
     "1": [
       { "7": 0, "9": 1, "11": 0, "12": 1 },

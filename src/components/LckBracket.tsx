@@ -1,11 +1,13 @@
-import { Match } from "./Match";
+import { Match as MatchComponent } from "./Match";
 import "./Bracket.css";
 import { FC, useState } from "react";
-import { MatchResult, ProcessedTeam } from "../types";
+import { Match, MatchResult, ProcessedTeam, ReducedScenario } from "../types";
 import {
   getProbabilityForPosition,
   getProbabilityForPositions,
+  getResult,
   getTeam,
+  getWinner,
   getWorldsProbabilityForTeam,
 } from "../utils/functions";
 import { Position } from "./Position";
@@ -13,15 +15,44 @@ import Background from "../championships/lck/background.png";
 import { lckTeams as teams } from "../championships/lck/teams";
 import { lckScenarios } from "../championships/lck/scenarios";
 
+const matchPositions: { topPx: number; leftPx: number }[] = [
+  { leftPx: 281, topPx: 115 },
+  { leftPx: 281, topPx: 212 },
+  { leftPx: 462, topPx: 115 },
+  { leftPx: 462, topPx: 212 },
+  { leftPx: 643, topPx: 161 },
+];
+
+const generateMatches = (scenario: ReducedScenario): Match[] => {
+  const match1: Match = { seed1: 3, seed2: 6, result: getResult(scenario, 1) };
+  const match2: Match = { seed1: 4, seed2: 5, result: getResult(scenario, 2) };
+  const match3: Match = {
+    seed1: 1,
+    seed2: getWinner(match1),
+    result: getResult(scenario, 3),
+  };
+  const match4: Match = {
+    seed1: 2,
+    seed2: getWinner(match2),
+    result: getResult(scenario, 4),
+  };
+  const match5: Match = {
+    seed1: getWinner(match3),
+    seed2: getWinner(match4),
+    result: getResult(scenario, 5),
+  };
+  return [match1, match2, match3, match4, match5];
+};
+
 type Props = {};
 
 export const LckBracket: FC<Props> = () => {
-  const [results, setResults] = useState<{ [index: number]: MatchResult }>({});
+  const [results, setResults] = useState<ReducedScenario>({});
 
   const getPropsForMatch = (match: number) => ({
     onResult: (result: MatchResult) => {
       setResults((current) => {
-        if (result.result === undefined) {
+        if (result === undefined) {
           const copy = { ...current };
           delete copy[match];
           return copy;
@@ -30,7 +61,7 @@ export const LckBracket: FC<Props> = () => {
         }
       });
     },
-    status: results[match]?.result,
+    result: results[match],
   });
 
   const getTeamWithWorldsPercentage = (
@@ -75,41 +106,15 @@ export const LckBracket: FC<Props> = () => {
               >
                 Worlds Probability
               </h1>
-              <Match
-                topPx={115}
-                leftPx={281}
-                team1={getTeamWithWorldsPercentage(3)}
-                team2={getTeamWithWorldsPercentage(6)}
-                {...getPropsForMatch(1)}
-              />
-              <Match
-                topPx={212}
-                leftPx={281}
-                team1={getTeamWithWorldsPercentage(4)}
-                team2={getTeamWithWorldsPercentage(5)}
-                {...getPropsForMatch(2)}
-              />
-              <Match
-                topPx={115}
-                leftPx={462}
-                team1={getTeamWithWorldsPercentage(1)}
-                team2={getTeamWithWorldsPercentage(results[1]?.winnerSeed)}
-                {...getPropsForMatch(3)}
-              />
-              <Match
-                topPx={212}
-                leftPx={462}
-                team1={getTeamWithWorldsPercentage(2)}
-                team2={getTeamWithWorldsPercentage(results[2]?.winnerSeed)}
-                {...getPropsForMatch(4)}
-              />
-              <Match
-                topPx={161}
-                leftPx={643}
-                team1={getTeamWithWorldsPercentage(results[3]?.winnerSeed)}
-                team2={getTeamWithWorldsPercentage(results[4]?.winnerSeed)}
-                {...getPropsForMatch(5)}
-              />
+              {generateMatches(results).map((match, index) => (
+                <MatchComponent
+                  key={index}
+                  {...matchPositions[index]}
+                  team1={getTeamWithWorldsPercentage(match.seed1)}
+                  team2={getTeamWithWorldsPercentage(match.seed2)}
+                  {...getPropsForMatch(index + 1)}
+                />
+              ))}
               <div
                 style={{
                   position: "absolute",

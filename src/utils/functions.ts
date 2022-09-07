@@ -1,8 +1,33 @@
-import { EndingScenarios, MatchResult, PlayoffsScenario, Team } from "../types";
+import {
+  Match,
+  MatchResult,
+  PositionScenarios,
+  ReducedScenario,
+  Team,
+} from "../types";
 
-export const getLowerSeed = (team1?: Team, team2?: Team) => {
-  return team1 && team2 ? (team1.seed > team2.seed ? team1 : team2) : undefined;
-};
+export const getLowerSeed = (seed1?: number, seed2?: number) =>
+  seed1 && seed2 ? (seed1 > seed2 ? seed1 : seed2) : undefined;
+
+export const getHigherSeed = (seed1?: number, seed2?: number) =>
+  seed1 && seed2 ? (seed1 > seed2 ? seed2 : seed1) : undefined;
+
+export const getLoser = (match: Match) =>
+  match.result === undefined
+    ? undefined
+    : match.result === 1
+    ? match.seed1
+    : match.seed2;
+
+export const getWinner = (match: Match) =>
+  match.result === undefined
+    ? undefined
+    : match.result === 1
+    ? match.seed2
+    : match.seed1;
+
+export const getResult = (scenario: ReducedScenario, match: number) =>
+  scenario[match];
 
 export const getTeam = (teams: Team[], seed?: number): Team | undefined => {
   if (seed === undefined) {
@@ -11,45 +36,30 @@ export const getTeam = (teams: Team[], seed?: number): Team | undefined => {
   return teams.find((item) => item.seed === seed);
 };
 
-export const getHigherSeed = (team1?: Team, team2?: Team) =>
-  team1 && team2 ? (team1.seed > team2.seed ? team2 : team1) : undefined;
-
-const resultsToScenario = (results: {
-  [index: number]: MatchResult;
-}): PlayoffsScenario => {
-  let scenario = {};
-  for (const matchNumber in results) {
-    scenario = { ...scenario, [matchNumber]: results[matchNumber].result };
-  }
-  return scenario;
-};
-
 export const toPercentage = (value: number) =>
   `${Math.round(value * 10000) / 100}%`;
 
 export const getProbabilityForPosition = (
   position: number,
-  results: { [index: number]: MatchResult },
-  scenarios: EndingScenarios
+  scenario: ReducedScenario,
+  positionScenarios: PositionScenarios
 ): { seed: number; probability: number }[] => {
-  const seedScenarios = scenarios[position];
-
-  const resultsScenario = resultsToScenario(results);
+  const seedScenarios = positionScenarios[position];
 
   let processedSeeds: { seed: number; probability: number }[] = [];
   for (const seed in seedScenarios) {
     let processedScenarios: { scenarioLength: number; matchLength: number }[] =
       [];
-    for (const scenario of seedScenarios[seed]) {
-      const matchingElements = Object.keys(resultsScenario).filter((val) =>
-        Object.keys(scenario).includes(val)
+    for (const seedScenario of seedScenarios[seed]) {
+      const matchingElements = Object.keys(scenario).filter((val) =>
+        Object.keys(seedScenario).includes(val)
       );
-      if (intersect([resultsScenario, scenario])) {
+      if (intersect([scenario, seedScenario])) {
         processedScenarios = [
           ...processedScenarios,
           {
             matchLength: matchingElements.length,
-            scenarioLength: Object.keys(scenario).length,
+            scenarioLength: Object.keys(seedScenario).length,
           },
         ];
       }
@@ -77,7 +87,7 @@ export const getProbabilityForPosition = (
 export const getProbabilityForPositions = (
   positions: number[],
   results: { [index: number]: MatchResult },
-  scenarios: EndingScenarios
+  scenarios: PositionScenarios
 ): { seed: number; probability: number }[] =>
   positions
     .map((position) => getProbabilityForPosition(position, results, scenarios))
@@ -103,7 +113,7 @@ export const getProbabilityForPositions = (
 export const getWorldsProbabilityForTeam = (
   team: Team,
   results: { [index: number]: MatchResult },
-  scenarios: EndingScenarios,
+  scenarios: PositionScenarios,
   weights: { [position: number]: number }
 ): number => {
   let accumulatedProbability = 0;
@@ -118,7 +128,7 @@ export const getWorldsProbabilityForTeam = (
   return accumulatedProbability;
 };
 
-const intersect = (scenarios: PlayoffsScenario[]): boolean => {
+const intersect = (scenarios: ReducedScenario[]): boolean => {
   for (let i = 0; i < scenarios.length; i++) {
     for (const x in scenarios[i]) {
       for (let j = 0; j < scenarios.length; j++) {

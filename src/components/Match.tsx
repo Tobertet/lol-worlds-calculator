@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef } from "react";
-import { MatchResult, MatchStatus, ProcessedTeam } from "../types";
+import { MatchResult, ProcessedTeam } from "../types";
 import "./Match.css";
 import { MatchTeam } from "./MatchTeam";
 
@@ -10,19 +10,13 @@ const undefinedTeam: ProcessedTeam = {
   seed: 1,
 };
 
-const emptyResult: MatchResult = {
-  result: undefined,
-  loserSeed: undefined,
-  winnerSeed: undefined,
-};
-
 type Props = {
   topPx: number;
   leftPx: number;
   team1?: ProcessedTeam;
   team2?: ProcessedTeam;
   onResult?: (result: MatchResult) => void;
-  status: MatchStatus;
+  result: MatchResult;
 };
 
 const usePrevious = <T extends unknown>(value: T): T | undefined => {
@@ -42,7 +36,7 @@ export const Match: FC<Props> = ({
   team1,
   team2,
   onResult,
-  status,
+  result,
 }) => {
   const previousTeam1 = usePrevious(team1);
   const previousTeam2 = usePrevious(team2);
@@ -52,25 +46,15 @@ export const Match: FC<Props> = ({
       team1?.seed !== previousTeam1?.seed ||
       team2?.seed !== previousTeam2?.seed
     ) {
-      if (status === 1 && team1 && team2) {
-        onResult &&
-          onResult({
-            result: 1,
-            winnerSeed: team2?.seed,
-            loserSeed: team1?.seed,
-          });
-      } else if (status === 0 && team1 && team2) {
-        onResult &&
-          onResult({
-            result: 0,
-            winnerSeed: team1?.seed,
-            loserSeed: team2?.seed,
-          });
+      if (result === 1 && team1 && team2) {
+        onResult && onResult(1);
+      } else if (result === 0 && team1 && team2) {
+        onResult && onResult(0);
       } else {
-        onResult && onResult(emptyResult);
+        onResult && onResult(undefined);
       }
     }
-  }, [team1, team2, onResult, previousTeam1, previousTeam2, status]);
+  }, [team1, team2, onResult, previousTeam1, previousTeam2, result]);
 
   return (
     <div
@@ -81,36 +65,28 @@ export const Match: FC<Props> = ({
         team={team1 || undefinedTeam}
         onSelect={() => {
           if (onResult && team1 && team2) {
-            if (status === 0) {
-              onResult(emptyResult);
+            if (result === 0) {
+              onResult(undefined);
             } else {
-              onResult({
-                result: 0,
-                loserSeed: team2.seed,
-                winnerSeed: team1.seed,
-              });
+              onResult(0);
             }
           }
         }}
-        selected={team1 && team2 && status === 0}
+        selected={team1 && team2 && result === 0}
       />
       <div className="divider" />
       <MatchTeam
         team={team2 || undefinedTeam}
         onSelect={() => {
           if (onResult && team1 && team2) {
-            if (status === 1) {
-              onResult(emptyResult);
+            if (result === 1) {
+              onResult(undefined);
             } else {
-              onResult({
-                result: 1,
-                loserSeed: team1.seed,
-                winnerSeed: team2.seed,
-              });
+              onResult(1);
             }
           }
         }}
-        selected={team1 && team2 && status === 1}
+        selected={team1 && team2 && result === 1}
       />
     </div>
   );

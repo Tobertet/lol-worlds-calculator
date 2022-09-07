@@ -1,10 +1,13 @@
-import { Match } from "./Match";
+import { Match as MatchComponent } from "./Match";
 import "./Bracket.css";
 import { FC, useState } from "react";
-import { MatchResult, ProcessedTeam } from "../types";
+import { Match, MatchResult, ProcessedTeam, ReducedScenario } from "../types";
 import {
+  getLoser,
   getProbabilityForPosition,
+  getResult,
   getTeam,
+  getWinner,
   getWorldsProbabilityForTeam,
 } from "../utils/functions";
 import { Position } from "./Position";
@@ -12,15 +15,99 @@ import Background from "../championships/lcs/background.png";
 import { lcsTeams as teams } from "../championships/lcs/teams";
 import { lcsScenarios } from "../championships/lcs/scenarios";
 
+const matchPositions: { topPx: number; leftPx: number }[] = [
+  { leftPx: 100, topPx: 115 },
+  { leftPx: 100, topPx: 212 },
+  { leftPx: 245, topPx: 115 },
+  { leftPx: 245, topPx: 212 },
+  { leftPx: 245, topPx: 323 },
+  { leftPx: 245, topPx: 420 },
+  { leftPx: 390, topPx: 323 },
+  { leftPx: 390, topPx: 420 },
+  { leftPx: 535, topPx: 161 },
+  { leftPx: 535, topPx: 369 },
+  { leftPx: 680, topPx: 260 },
+  { leftPx: 824, topPx: 161 },
+];
+
+const generateMatches = (scenario: ReducedScenario): Match[] => {
+  const match1: Match = { seed1: 5, seed2: 4, result: getResult(scenario, 1) };
+  const match2: Match = { seed1: 3, seed2: 6, result: getResult(scenario, 2) };
+  const match3: Match = {
+    seed1: 1,
+    seed2: getWinner(match1),
+    result: getResult(scenario, 3),
+  };
+  const match4: Match = {
+    seed1: 2,
+    seed2: getWinner(match2),
+    result: getResult(scenario, 4),
+  };
+  const match5: Match = {
+    seed1: getLoser(match2),
+    seed2: 7,
+    result: getResult(scenario, 5),
+  };
+  const match6: Match = {
+    seed1: getLoser(match1),
+    seed2: 8,
+    result: getResult(scenario, 6),
+  };
+  const match7: Match = {
+    seed1: getLoser(match3),
+    seed2: getWinner(match5),
+    result: getResult(scenario, 7),
+  };
+  const match8: Match = {
+    seed1: getLoser(match4),
+    seed2: getWinner(match6),
+    result: getResult(scenario, 8),
+  };
+  const match9: Match = {
+    seed1: getWinner(match3),
+    seed2: getWinner(match4),
+    result: getResult(scenario, 9),
+  };
+  const match10: Match = {
+    seed1: getWinner(match7),
+    seed2: getWinner(match8),
+    result: getResult(scenario, 10),
+  };
+  const match11: Match = {
+    seed1: getLoser(match9),
+    seed2: getWinner(match10),
+    result: getResult(scenario, 11),
+  };
+  const match12: Match = {
+    seed1: getWinner(match9),
+    seed2: getWinner(match11),
+    result: getResult(scenario, 12),
+  };
+  return [
+    match1,
+    match2,
+    match3,
+    match4,
+    match5,
+    match6,
+    match7,
+    match8,
+    match9,
+    match10,
+    match11,
+    match12,
+  ];
+};
+
 type Props = {};
 
 export const LcsBracket: FC<Props> = () => {
-  const [results, setResults] = useState<{ [index: number]: MatchResult }>({});
+  const [results, setResults] = useState<ReducedScenario>({});
 
   const getPropsForMatch = (match: number) => ({
     onResult: (result: MatchResult) => {
       setResults((current) => {
-        if (result.result === undefined) {
+        if (result === undefined) {
           const copy = { ...current };
           delete copy[match];
           return copy;
@@ -29,7 +116,7 @@ export const LcsBracket: FC<Props> = () => {
         }
       });
     },
-    status: results[match]?.result,
+    result: results[match],
   });
 
   const getTeamWithWorldsPercentage = (
@@ -71,91 +158,15 @@ export const LcsBracket: FC<Props> = () => {
               >
                 Worlds Probability
               </h1>
-              <Match
-                topPx={115}
-                leftPx={100}
-                team1={getTeamWithWorldsPercentage(5)}
-                team2={getTeamWithWorldsPercentage(4)}
-                {...getPropsForMatch(1)}
-              />
-              <Match
-                topPx={212}
-                leftPx={100}
-                team1={getTeamWithWorldsPercentage(3)}
-                team2={getTeamWithWorldsPercentage(6)}
-                {...getPropsForMatch(2)}
-              />
-              <Match
-                topPx={115}
-                leftPx={245}
-                team1={getTeamWithWorldsPercentage(1)}
-                team2={getTeamWithWorldsPercentage(results[1]?.winnerSeed)}
-                {...getPropsForMatch(3)}
-              />
-              <Match
-                topPx={212}
-                leftPx={245}
-                team1={getTeamWithWorldsPercentage(2)}
-                team2={getTeamWithWorldsPercentage(results[2]?.winnerSeed)}
-                {...getPropsForMatch(4)}
-              />
-              <Match
-                topPx={323}
-                leftPx={245}
-                team1={getTeamWithWorldsPercentage(results[2]?.loserSeed)}
-                team2={getTeamWithWorldsPercentage(7)}
-                {...getPropsForMatch(5)}
-              />
-              <Match
-                topPx={420}
-                leftPx={245}
-                team1={getTeamWithWorldsPercentage(results[1]?.loserSeed)}
-                team2={getTeamWithWorldsPercentage(8)}
-                {...getPropsForMatch(6)}
-              />
-              <Match
-                topPx={323}
-                leftPx={390}
-                team1={getTeamWithWorldsPercentage(results[3]?.loserSeed)}
-                team2={getTeamWithWorldsPercentage(results[5]?.winnerSeed)}
-                {...getPropsForMatch(7)}
-              />
-              <Match
-                topPx={420}
-                leftPx={390}
-                team1={getTeamWithWorldsPercentage(results[4]?.loserSeed)}
-                team2={getTeamWithWorldsPercentage(results[6]?.winnerSeed)}
-                {...getPropsForMatch(8)}
-              />
-              <Match
-                topPx={161}
-                leftPx={535}
-                team1={getTeamWithWorldsPercentage(results[3]?.winnerSeed)}
-                team2={getTeamWithWorldsPercentage(results[4]?.winnerSeed)}
-                {...getPropsForMatch(9)}
-              />
-              <Match
-                topPx={369}
-                leftPx={535}
-                team1={getTeamWithWorldsPercentage(results[7]?.winnerSeed)}
-                team2={getTeamWithWorldsPercentage(results[8]?.winnerSeed)}
-                {...getPropsForMatch(10)}
-              />
-              <Match
-                topPx={260}
-                leftPx={680}
-                team1={getTeamWithWorldsPercentage(results[9]?.loserSeed)}
-                team2={getTeamWithWorldsPercentage(results[10]?.winnerSeed)}
-                {...getPropsForMatch(11)}
-              />
-              <Match
-                topPx={161}
-                leftPx={824}
-                team1={getTeamWithWorldsPercentage(results[9]?.winnerSeed)}
-                team2={getTeamWithWorldsPercentage(results[11]?.winnerSeed)}
-                {...getPropsForMatch(12)}
-              />
-
+              {generateMatches(results).map((match, index) => (
+                <MatchComponent
+                  key={index}
+                  {...matchPositions[index]}
+                  team1={getTeamWithWorldsPercentage(match.seed1)}
+                  team2={getTeamWithWorldsPercentage(match.seed2)}
+                  {...getPropsForMatch(index + 1)}
+                />
+              ))}
               <div
                 style={{
                   position: "absolute",
