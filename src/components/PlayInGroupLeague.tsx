@@ -1,11 +1,15 @@
 import { FC, useState } from "react";
+import { lecScenarios } from "../championships/lec/scenarios";
 import { lecTeams } from "../championships/lec/teams";
+import { Team } from "../types";
 import { LeagueMatches, ReducedScenario } from "./LeagueMatches";
-import { LeagueStandings } from "./LeagueStandings";
+import { PlayInGroupStandings } from "./PlayInGroupStandings";
 
-type Props = {};
+type Props = {
+  teams: Team[];
+};
 
-export const PlayInLeague: FC<Props> = () => {
+export const PlayInGroupLeague: FC<Props> = ({ teams }) => {
   const [scenario, setScenario] = useState<ReducedScenario>({});
 
   return (
@@ -21,7 +25,7 @@ export const PlayInLeague: FC<Props> = () => {
         <LeagueMatches
           scenario={scenario}
           setScenario={setScenario}
-          teams={lecTeams}
+          teams={teams}
           matches={[
             { team1: 1, team2: 2 },
             { team1: 1, team2: 3 },
@@ -42,7 +46,11 @@ export const PlayInLeague: FC<Props> = () => {
         />
       </div>
       <div style={{ width: "100%", margin: "5%" }}>
-        <LeagueStandings scenario={scenario} teams={lecTeams} scenarios={} />
+        <PlayInGroupStandings
+          positionScenarios={lecScenarios}
+          scenario={scenario}
+          teams={teams}
+        />
       </div>
     </div>
   );

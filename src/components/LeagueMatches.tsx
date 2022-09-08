@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { MatchStatus, Team } from "../types";
+import { Team } from "../types";
 import { getTeam } from "../utils/functions";
 
 export type MatchResult = 0 | 1 | undefined;
@@ -38,9 +38,16 @@ export const LeagueMatches: FC<Props> = ({
         key={`${match.team1}:${match.team2}`}
         team1={getTeam(teams, match.team1) || undefinedTeam}
         team2={getTeam(teams, match.team2) || undefinedTeam}
-        status={scenario[index + 1]}
+        result={scenario[index + 1]}
         onResult={(result) => {
-          setScenario((scenario) => ({ ...scenario, [index + 1]: result }));
+          setScenario((current) => {
+            if (result === undefined) {
+              const copy = { ...current };
+              delete copy[index + 1];
+              return copy;
+            }
+            return { ...current, [index + 1]: result };
+          });
         }}
       />
     ))}
@@ -51,13 +58,13 @@ type LeagueMatchProps = {
   team1: Team;
   team2: Team;
   onResult?: (result: MatchResult) => void;
-  status: MatchStatus;
+  result: MatchResult;
 };
 
 const LeagueMatch: FC<LeagueMatchProps> = ({
   team1,
   team2,
-  status,
+  result,
   onResult,
 }) => (
   <div
@@ -75,12 +82,12 @@ const LeagueMatch: FC<LeagueMatchProps> = ({
         flexDirection: "row",
         alignItems: "center",
         cursor: team1.name === "TBD" ? "not-allowed" : "pointer",
-        borderLeft: `3px solid ${status === 0 ? "#1A76E3" : "transparent"}`,
+        borderLeft: `3px solid ${result === 0 ? "#1A76E3" : "transparent"}`,
         justifyContent: "center",
       }}
       onClick={() => {
         if (onResult) {
-          if (status === 0) {
+          if (result === 0) {
             onResult(undefined);
           } else {
             onResult(0);
@@ -91,11 +98,11 @@ const LeagueMatch: FC<LeagueMatchProps> = ({
       <img
         src={team1.icon}
         alt={`team ${team1.name} icon`}
-        style={{ opacity: status === 1 ? 0.25 : 1 }}
+        style={{ opacity: result === 1 ? 0.25 : 1 }}
       />
       <span
         style={{
-          color: status === 1 ? "gray" : "#fff",
+          color: result === 1 ? "gray" : "#fff",
         }}
       >
         {team1.name}
@@ -112,12 +119,12 @@ const LeagueMatch: FC<LeagueMatchProps> = ({
         flexDirection: "row",
         alignItems: "center",
         cursor: team1.name === "TBD" ? "not-allowed" : "pointer",
-        borderRight: `5px solid ${status === 1 ? "#1A76E3" : "transparent"}`,
+        borderRight: `5px solid ${result === 1 ? "#1A76E3" : "transparent"}`,
         justifyContent: "center",
       }}
       onClick={() => {
         if (team2.name !== "TBD" && onResult) {
-          if (status === 1) {
+          if (result === 1) {
             onResult(undefined);
           } else {
             onResult(1);
@@ -127,7 +134,7 @@ const LeagueMatch: FC<LeagueMatchProps> = ({
     >
       <span
         style={{
-          color: status === 0 ? "gray" : "#fff",
+          color: result === 0 ? "gray" : "#fff",
         }}
       >
         {team2.name}
@@ -135,7 +142,7 @@ const LeagueMatch: FC<LeagueMatchProps> = ({
       <img
         src={team2.icon}
         alt={`team ${team2.name} icon`}
-        style={{ opacity: status === 0 ? 0.25 : 1 }}
+        style={{ opacity: result === 0 ? 0.25 : 1 }}
       />
     </div>
   </div>
