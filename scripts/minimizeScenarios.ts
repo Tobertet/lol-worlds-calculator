@@ -96,7 +96,7 @@ export const minimizeScenarios = (
   console.log(`Minimizing ${scenarios.length} complete scenarios...`);
   let minimizedScenarios = [...scenarios];
   const amountOfScenariosBySize: { [size: number]: number } = {};
-  for (let size = dimensions - 1; size > 0; size--) {
+  for (let size = dimensions - 1; size >= 0; size--) {
     amountOfScenariosBySize[size + 1] = 0;
     minimizedScenarios = [
       ...groupScenarios(minimizedScenarios, size, dimensions),

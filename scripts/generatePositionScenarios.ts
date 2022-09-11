@@ -48,7 +48,8 @@ export const generatePositionScenarios = (
     for (let seed = 1; seed <= seeds; seed++) {
       let allScenarios: CompleteScenario[] = [];
       for (const item of scenarioStandings) {
-        if (item.standings[position - 1] === seed) {
+        console.log(item.standings);
+        if (item.standings[position - 1]?.includes(seed)) {
           allScenarios = [...allScenarios, item.scenario];
         }
       }

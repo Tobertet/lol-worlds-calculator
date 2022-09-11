@@ -9,7 +9,7 @@ export type Match = {
 };
 
 export type Standings = {
-  [position: number]: number;
+  [position: number]: number[];
 };
 
 type SolvedScenario = {

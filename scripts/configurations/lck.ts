@@ -42,16 +42,16 @@ const lckSummerPointsTable: ChampionshipPointsTable = {
 };
 
 const lckSpringStandings: Standings = {
-  1: 2,
-  2: 1,
-  3: 7,
-  4: 3,
-  5: 8,
-  6: 5,
-  7: 4,
-  8: 9,
-  9: 6,
-  10: 10,
+  1: [2],
+  2: [1],
+  3: [7],
+  4: [3],
+  5: [8],
+  6: [5],
+  7: [4],
+  8: [9],
+  9: [6],
+  10: [10],
 };
 
 const lckBracketSolver: BracketSolver = (scenario) => {
@@ -75,16 +75,16 @@ const lckBracketSolver: BracketSolver = (scenario) => {
   return {
     scenario,
     standings: {
-      1: getWinner(match5),
-      2: getLoser(match5),
-      3: getHigherSeed(getLoser(match3), getLoser(match4)),
-      4: getLowerSeed(getLoser(match3), getLoser(match4)),
-      5: getHigherSeed(getLoser(match1), getLoser(match2)),
-      6: getLowerSeed(getLoser(match1), getLoser(match2)),
-      7: 7,
-      8: 8,
-      9: 9,
-      10: 10,
+      1: [getWinner(match5)],
+      2: [getLoser(match5)],
+      3: [getHigherSeed(getLoser(match3), getLoser(match4))],
+      4: [getLowerSeed(getLoser(match3), getLoser(match4))],
+      5: [getHigherSeed(getLoser(match1), getLoser(match2))],
+      6: [getLowerSeed(getLoser(match1), getLoser(match2))],
+      7: [7],
+      8: [8],
+      9: [9],
+      10: [10],
     },
   };
 };
@@ -92,7 +92,7 @@ const lckBracketSolver: BracketSolver = (scenario) => {
 const lckPointsSolver: PointsSolver = (playoffsResult) => {
   let results: ChampionshipPointsResult[] = [];
   for (const standingsPosition in playoffsResult.standings) {
-    const seed = playoffsResult.standings[standingsPosition];
+    const seed = playoffsResult.standings[standingsPosition][0];
     results = [
       ...results,
       {
@@ -100,7 +100,7 @@ const lckPointsSolver: PointsSolver = (playoffsResult) => {
         summerPoints: lckSummerPointsTable[standingsPosition],
         championshipPoints:
           lckSummerPointsTable[standingsPosition] +
-          lckSpringPointsTable[lckSpringStandings[seed]],
+          lckSpringPointsTable[lckSpringStandings[seed][0]],
       },
     ];
   }
@@ -126,7 +126,7 @@ const lckPointsSolver: PointsSolver = (playoffsResult) => {
           ? 1
           : 0;
       })
-      .map((result) => result.seed),
+      .map((result) => [result.seed]),
   };
 };
 

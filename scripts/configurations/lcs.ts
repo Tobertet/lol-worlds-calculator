@@ -63,10 +63,10 @@ const lcsBracketSolver: BracketSolver = (scenario) => {
   return {
     scenario,
     standings: {
-      1: getWinner(match12),
-      2: getLoser(match12),
-      3: getLoser(match11),
-      4: getLoser(match10),
+      1: [getWinner(match12)],
+      2: [getLoser(match12)],
+      3: [getLoser(match11)],
+      4: [getLoser(match10)],
     },
   };
 };

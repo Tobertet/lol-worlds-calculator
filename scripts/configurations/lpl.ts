@@ -36,16 +36,16 @@ const lplSummerPointsTable: ChampionshipPointsTable = {
 };
 
 const lplSpringStandings: Standings = {
-  1: 2,
-  2: 4,
-  3: 3,
-  4: 1,
-  5: 7,
-  6: 5,
-  7: 6,
-  8: 9,
-  9: 10,
-  10: 8,
+  1: [2],
+  2: [4],
+  3: [3],
+  4: [1],
+  5: [7],
+  6: [5],
+  7: [6],
+  8: [9],
+  9: [10],
+  10: [8],
 };
 
 const lplBracketSolver: BracketSolver = (scenario) => {
@@ -104,16 +104,16 @@ const lplBracketSolver: BracketSolver = (scenario) => {
   return {
     scenario,
     standings: {
-      1: getWinner(match12),
-      2: getLoser(match12),
-      3: getLoser(match11),
-      4: getLoser(match10),
-      5: getLoser(match5),
-      6: getLoser(match6),
-      7: getLoser(match3),
-      8: getLoser(match4),
-      9: getLoser(match1),
-      10: getLoser(match2),
+      1: [getWinner(match12)],
+      2: [getLoser(match12)],
+      3: [getLoser(match11)],
+      4: [getLoser(match10)],
+      5: [getLoser(match5)],
+      6: [getLoser(match6)],
+      7: [getLoser(match3)],
+      8: [getLoser(match4)],
+      9: [getLoser(match1)],
+      10: [getLoser(match2)],
     },
   };
 };
@@ -121,7 +121,7 @@ const lplBracketSolver: BracketSolver = (scenario) => {
 const lplPointsSolver: PointsSolver = (playoffsResult) => {
   let results: ChampionshipPointsResult[] = [];
   for (const standingsPosition in playoffsResult.standings) {
-    const seed = playoffsResult.standings[standingsPosition];
+    const seed = playoffsResult.standings[standingsPosition][0];
     results = [
       ...results,
       {
@@ -129,7 +129,7 @@ const lplPointsSolver: PointsSolver = (playoffsResult) => {
         summerPoints: lplSummerPointsTable[standingsPosition],
         championshipPoints:
           lplSummerPointsTable[standingsPosition] +
-          lplSpringPointsTable[lplSpringStandings[seed]],
+          lplSpringPointsTable[lplSpringStandings[seed][0]],
       },
     ];
   }
@@ -155,7 +155,7 @@ const lplPointsSolver: PointsSolver = (playoffsResult) => {
           ? 1
           : 0;
       })
-      .map((result) => result.seed),
+      .map((result) => [result.seed]),
   };
 };
 

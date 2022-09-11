@@ -45,12 +45,12 @@ const lecBracketSolver: BracketSolver = (scenario) => {
   return {
     scenario,
     standings: {
-      1: getWinner(match8),
-      2: getLoser(match8),
-      3: getLoser(match7),
-      4: getLoser(match6),
-      5: getLoser(match4),
-      6: getLoser(match3),
+      1: [getWinner(match8)],
+      2: [getLoser(match8)],
+      3: [getLoser(match7)],
+      4: [getLoser(match6)],
+      5: [getLoser(match4)],
+      6: [getLoser(match3)],
     },
   };
 };
