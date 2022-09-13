@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
-import { lecScenarios } from "../championships/lec/scenarios";
-import { lecTeams } from "../championships/lec/teams";
+import { playInsScenarios } from "../championships/worlds/playInsScenarios";
 import { Team } from "../types";
 import { LeagueMatches, ReducedScenario } from "./LeagueMatches";
 import { PlayInGroupStandings } from "./PlayInGroupStandings";
@@ -28,26 +27,23 @@ export const PlayInGroupLeague: FC<Props> = ({ teams }) => {
           teams={teams}
           matches={[
             { team1: 1, team2: 2 },
+            { team1: 1, team2: 2 },
+            { team1: 1, team2: 3 },
             { team1: 1, team2: 3 },
             { team1: 1, team2: 4 },
-            { team1: 1, team2: 5 },
-            { team1: 1, team2: 6 },
+            { team1: 1, team2: 4 },
+            { team1: 2, team2: 3 },
             { team1: 2, team2: 3 },
             { team1: 2, team2: 4 },
-            { team1: 2, team2: 5 },
-            { team1: 2, team2: 6 },
+            { team1: 2, team2: 4 },
             { team1: 3, team2: 4 },
-            { team1: 3, team2: 5 },
-            { team1: 3, team2: 6 },
-            { team1: 4, team2: 5 },
-            { team1: 4, team2: 6 },
-            { team1: 5, team2: 6 },
+            { team1: 3, team2: 4 },
           ]}
         />
       </div>
       <div style={{ width: "100%", margin: "5%" }}>
         <PlayInGroupStandings
-          positionScenarios={lecScenarios}
+          positionScenarios={playInsScenarios}
           scenario={scenario}
           teams={teams}
         />

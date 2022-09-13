@@ -18,7 +18,7 @@ const completeScenario2ReducedScenario = (
   scenario: CompleteScenario
 ): ReducedScenario => {
   let reducedScenario = {};
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < scenario.length; i++) {
     if (scenario[i] === 1) {
       reducedScenario = { ...reducedScenario, [i + 1]: 1 };
     } else if (scenario[i] === 0) {
@@ -48,7 +48,6 @@ export const generatePositionScenarios = (
     for (let seed = 1; seed <= seeds; seed++) {
       let allScenarios: CompleteScenario[] = [];
       for (const item of scenarioStandings) {
-        console.log(item.standings);
         if (item.standings[position - 1]?.includes(seed)) {
           allScenarios = [...allScenarios, item.scenario];
         }

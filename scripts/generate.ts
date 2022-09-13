@@ -5,12 +5,16 @@ import { argv } from "process";
 import { lecConfiguration } from "./configurations/lec";
 import { lcsConfiguration } from "./configurations/lcs";
 import { lckConfiguration } from "./configurations/lck";
+import { playInsConfiguration } from "./configurations/worlds/playIns";
+import { worldsMainConfiguration } from "./configurations/worlds/groupsStage";
 
 type AvailableConfigurations = {
   lpl: ChampionshipConfiguration;
   lec: ChampionshipConfiguration;
   lcs: ChampionshipConfiguration;
   lck: ChampionshipConfiguration;
+  playIns: ChampionshipConfiguration;
+  worldsMain: ChampionshipConfiguration;
 };
 
 const availableConfigurations: AvailableConfigurations = {
@@ -18,6 +22,8 @@ const availableConfigurations: AvailableConfigurations = {
   lec: lecConfiguration,
   lcs: lcsConfiguration,
   lck: lckConfiguration,
+  playIns: playInsConfiguration,
+  worldsMain: worldsMainConfiguration,
 };
 
 if (!argv[2]) {
