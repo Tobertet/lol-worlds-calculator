@@ -5,7 +5,7 @@ import {
   PositionScenarios,
   CompleteScenario,
   ReducedScenario,
-  NewChampionshipConfiguration,
+  ChampionshipConfiguration,
 } from "./types";
 
 type Options = {
@@ -29,7 +29,7 @@ const completeScenario2ReducedScenario = (
 };
 
 export const generatePositionScenarios = (
-  configuration: NewChampionshipConfiguration,
+  configuration: ChampionshipConfiguration,
   {
     positions = 6,
     seeds = configuration.totalTeams,

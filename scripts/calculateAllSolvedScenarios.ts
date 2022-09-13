@@ -1,8 +1,8 @@
 import { calculateAllCompleteScenarios } from "./calculateAllCompleteScenarios";
-import { NewChampionshipConfiguration } from "./types";
+import { ChampionshipConfiguration } from "./types";
 
 export const calculateAllSolvedScenarios = ({
   totalMatches,
   solver,
-}: NewChampionshipConfiguration) =>
+}: ChampionshipConfiguration) =>
   calculateAllCompleteScenarios(totalMatches).map(solver);

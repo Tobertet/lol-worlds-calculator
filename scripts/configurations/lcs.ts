@@ -1,4 +1,4 @@
-import { BracketSolver, Match, NewChampionshipConfiguration } from "../types";
+import { BracketSolver, Match, ChampionshipConfiguration } from "../types";
 import { getLoser, getResult, getWinner } from "./utils";
 
 const lcsBracketSolver: BracketSolver = (scenario) => {
@@ -65,7 +65,7 @@ const lcsBracketSolver: BracketSolver = (scenario) => {
   };
 };
 
-export const lcsConfiguration: NewChampionshipConfiguration = {
+export const lcsConfiguration: ChampionshipConfiguration = {
   totalMatches: 12,
   totalTeams: 8,
   solver: lcsBracketSolver,

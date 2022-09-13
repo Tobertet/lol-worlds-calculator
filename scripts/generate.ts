@@ -1,16 +1,18 @@
 import { generatePositionScenarios } from "./generatePositionScenarios";
-import { NewChampionshipConfiguration } from "./types";
+import { ChampionshipConfiguration } from "./types";
 import { argv } from "process";
 import { worldsGroupsLeagueConfiguration } from "./configurations/worlds/groupsLeague";
 import { lcsConfiguration } from "./configurations/lcs";
 import { lecConfiguration } from "./configurations/lec";
 import { lckConfiguration } from "./configurations/lck";
+import { lplConfiguration } from "./configurations/lpl";
 
 type AvailableConfigurations = {
-  worldsGroups: NewChampionshipConfiguration;
-  lec: NewChampionshipConfiguration;
-  lcs: NewChampionshipConfiguration;
-  lck: NewChampionshipConfiguration;
+  worldsGroups: ChampionshipConfiguration;
+  lec: ChampionshipConfiguration;
+  lcs: ChampionshipConfiguration;
+  lck: ChampionshipConfiguration;
+  lpl: ChampionshipConfiguration;
 };
 
 const availableConfigurations: AvailableConfigurations = {
@@ -18,6 +20,7 @@ const availableConfigurations: AvailableConfigurations = {
   lec: lecConfiguration,
   lcs: lcsConfiguration,
   lck: lckConfiguration,
+  lpl: lplConfiguration,
 };
 
 if (!argv[2]) {

@@ -2,7 +2,7 @@ import {
   BracketSolver,
   ChampionshipPointsTable,
   Match,
-  NewChampionshipConfiguration,
+  ChampionshipConfiguration,
 } from "../types";
 import {
   championshipPointsSolver,
@@ -74,7 +74,7 @@ const lckBracketSolver: BracketSolver = (scenario) => {
   };
 };
 
-export const lckConfiguration: NewChampionshipConfiguration = {
+export const lckConfiguration: ChampionshipConfiguration = {
   totalMatches: 5,
   totalTeams: 10,
   solver: (scenario) =>

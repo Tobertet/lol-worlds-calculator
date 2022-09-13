@@ -18,31 +18,17 @@ type SolvedScenario = {
 };
 
 export type BracketSolver = (scenario: CompleteScenario) => SolvedScenario;
-export type PointsSolver = (scenario: SolvedScenario) => SolvedScenario;
 
-export type ScenarioSolver = (scenario: CompleteScenario) => SolvedScenario;
+type ScenarioSolver = (scenario: CompleteScenario) => SolvedScenario;
 
-export type NewChampionshipConfiguration = {
+export type ChampionshipConfiguration = {
   totalMatches: number;
   totalTeams: number;
   solver: ScenarioSolver;
 };
 
-export type ChampionshipConfiguration = {
-  totalMatches: number;
-  totalTeams: number;
-  bracketSolver: BracketSolver;
-  pointsSolver: PointsSolver;
-};
-
 export type ChampionshipPointsTable = {
   [position: number]: number;
-};
-
-export type ChampionshipPointsResult = {
-  seed: number;
-  summerPoints: number;
-  championshipPoints: number;
 };
 
 export type ReducedScenario = {
@@ -57,7 +43,7 @@ export type PositionScenarios = {
   [position: number]: SeedScenarios;
 };
 
-export type Showdown = { seed1: number; seed2: number };
+type Showdown = { seed1: number; seed2: number };
 
 export type LeagueConfiguration = {
   showdowns: Showdown[];

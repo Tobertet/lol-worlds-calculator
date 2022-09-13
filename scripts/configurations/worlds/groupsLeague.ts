@@ -1,4 +1,4 @@
-import { LeagueConfiguration, NewChampionshipConfiguration } from "../../types";
+import { LeagueConfiguration, ChampionshipConfiguration } from "../../types";
 import { leagueSolver } from "../utils";
 
 const configuration: LeagueConfiguration = {
@@ -18,7 +18,7 @@ const configuration: LeagueConfiguration = {
   ],
 };
 
-export const worldsGroupsLeagueConfiguration: NewChampionshipConfiguration = {
+export const worldsGroupsLeagueConfiguration: ChampionshipConfiguration = {
   totalMatches: 12,
   totalTeams: 4,
   solver: (scenario) => leagueSolver(scenario, configuration),

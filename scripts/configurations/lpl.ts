@@ -1,28 +1,17 @@
 import {
-  ChampionshipConfiguration,
   BracketSolver,
-  ChampionshipPointsResult,
   ChampionshipPointsTable,
   Match,
-  PointsSolver,
-  Standings,
+  ChampionshipConfiguration,
 } from "../types";
-import { getLoser, getResult, getWinner } from "./utils";
+import {
+  championshipPointsSolver,
+  getLoser,
+  getResult,
+  getWinner,
+} from "./utils";
 
-const lplSpringPointsTable: ChampionshipPointsTable = {
-  1: 90,
-  2: 70,
-  3: 50,
-  4: 30,
-  5: 20,
-  6: 20,
-  7: 10,
-  8: 10,
-  9: 0,
-  10: 0,
-};
-
-const lplSummerPointsTable: ChampionshipPointsTable = {
+const summerPointsTable: ChampionshipPointsTable = {
   1: 10000,
   2: 110,
   3: 80,
@@ -35,17 +24,17 @@ const lplSummerPointsTable: ChampionshipPointsTable = {
   10: 0,
 };
 
-const lplSpringStandings: Standings = {
-  1: [2],
-  2: [4],
-  3: [3],
-  4: [1],
-  5: [7],
-  6: [5],
-  7: [6],
-  8: [9],
-  9: [10],
-  10: [8],
+const previousPointsPerSeed: ChampionshipPointsTable = {
+  1: 70,
+  2: 30,
+  3: 50,
+  4: 90,
+  5: 10,
+  6: 20,
+  7: 20,
+  8: 0,
+  9: 0,
+  10: 10,
 };
 
 const lplBracketSolver: BracketSolver = (scenario) => {
@@ -118,50 +107,12 @@ const lplBracketSolver: BracketSolver = (scenario) => {
   };
 };
 
-const lplPointsSolver: PointsSolver = (playoffsResult) => {
-  let results: ChampionshipPointsResult[] = [];
-  for (const standingsPosition in playoffsResult.standings) {
-    const seed = playoffsResult.standings[standingsPosition][0];
-    results = [
-      ...results,
-      {
-        seed,
-        summerPoints: lplSummerPointsTable[standingsPosition],
-        championshipPoints:
-          lplSummerPointsTable[standingsPosition] +
-          lplSpringPointsTable[lplSpringStandings[seed][0]],
-      },
-    ];
-  }
-  if (
-    results[5].championshipPoints === results[6].championshipPoints &&
-    results[5].summerPoints === results[6].summerPoints
-  ) {
-    throw Error(
-      `Two teams have the same championshipPoints and summerPoints in positions 6 and 7 for scenario ${playoffsResult.scenario}`
-    );
-  }
-  return {
-    scenario: playoffsResult.scenario,
-    standings: results
-      .sort((a, b) => {
-        return a.championshipPoints > b.championshipPoints
-          ? -1
-          : b.championshipPoints > a.championshipPoints
-          ? 1
-          : a.summerPoints > b.summerPoints
-          ? -1
-          : b.summerPoints > a.summerPoints
-          ? 1
-          : 0;
-      })
-      .map((result) => [result.seed]),
-  };
-};
-
 export const lplConfiguration: ChampionshipConfiguration = {
   totalMatches: 12,
   totalTeams: 10,
-  bracketSolver: lplBracketSolver,
-  pointsSolver: lplPointsSolver,
+  solver: (scenario) =>
+    championshipPointsSolver(lplBracketSolver(scenario), {
+      championshipPointsTable: summerPointsTable,
+      previousPointsPerSeed,
+    }),
 };
