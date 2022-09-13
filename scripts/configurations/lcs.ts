@@ -1,10 +1,4 @@
-import {
-  ChampionshipConfiguration,
-  BracketSolver,
-  Match,
-  PointsSolver,
-  Standings,
-} from "../types";
+import { BracketSolver, Match, NewChampionshipConfiguration } from "../types";
 import { getLoser, getResult, getWinner } from "./utils";
 
 const lcsBracketSolver: BracketSolver = (scenario) => {
@@ -71,22 +65,8 @@ const lcsBracketSolver: BracketSolver = (scenario) => {
   };
 };
 
-const convertStandings = (standings: Standings): Standings => {
-  let newStandings: Standings = [];
-  for (const key of Object.keys(standings)) {
-    newStandings[parseInt(key) - 1] = standings[key];
-  }
-  return newStandings;
-};
-
-const lcsPointsSolver: PointsSolver = (playoffsResult) => ({
-  ...playoffsResult,
-  standings: convertStandings(playoffsResult.standings),
-});
-
-export const lcsConfiguration: ChampionshipConfiguration = {
+export const lcsConfiguration: NewChampionshipConfiguration = {
   totalMatches: 12,
   totalTeams: 8,
-  bracketSolver: lcsBracketSolver,
-  pointsSolver: lcsPointsSolver,
+  solver: lcsBracketSolver,
 };

@@ -1,10 +1,4 @@
-import {
-  ChampionshipConfiguration,
-  BracketSolver,
-  Match,
-  PointsSolver,
-  Standings,
-} from "../types";
+import { BracketSolver, Match, NewChampionshipConfiguration } from "../types";
 import {
   getHigherSeed,
   getLoser,
@@ -55,22 +49,8 @@ const lecBracketSolver: BracketSolver = (scenario) => {
   };
 };
 
-const convertStandings = (standings: Standings): Standings => {
-  let newStandings: Standings = [];
-  for (const key of Object.keys(standings)) {
-    newStandings[parseInt(key) - 1] = standings[key];
-  }
-  return newStandings;
-};
-
-const lecPointsSolver: PointsSolver = (playoffsResult) => ({
-  ...playoffsResult,
-  standings: convertStandings(playoffsResult.standings),
-});
-
-export const lecConfiguration: ChampionshipConfiguration = {
+export const lecConfiguration: NewChampionshipConfiguration = {
   totalMatches: 8,
   totalTeams: 6,
-  bracketSolver: lecBracketSolver,
-  pointsSolver: lecPointsSolver,
+  solver: lecBracketSolver,
 };
