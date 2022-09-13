@@ -1,11 +1,11 @@
 import * as fs from "fs";
-import { calculatePointsStandings } from "./calculatePointsStandings";
+import { calculateAllSolvedScenarios } from "./calculateAllSolvedScenarios";
 import { minimizeScenarios } from "./minimizeScenarios";
 import {
-  ChampionshipConfiguration,
   PositionScenarios,
   CompleteScenario,
   ReducedScenario,
+  NewChampionshipConfiguration,
 } from "./types";
 
 type Options = {
@@ -29,7 +29,7 @@ const completeScenario2ReducedScenario = (
 };
 
 export const generatePositionScenarios = (
-  configuration: ChampionshipConfiguration,
+  configuration: NewChampionshipConfiguration,
   {
     positions = 6,
     seeds = configuration.totalTeams,
@@ -40,7 +40,7 @@ export const generatePositionScenarios = (
     outputFile: "./scripts/output.json",
   }
 ): PositionScenarios => {
-  const scenarioStandings = calculatePointsStandings(configuration);
+  const scenarioStandings = calculateAllSolvedScenarios(configuration);
 
   let positionScenarios: PositionScenarios = {};
   for (let position = 1; position <= positions; position++) {
@@ -48,7 +48,7 @@ export const generatePositionScenarios = (
     for (let seed = 1; seed <= seeds; seed++) {
       let allScenarios: CompleteScenario[] = [];
       for (const item of scenarioStandings) {
-        if (item.standings[position - 1]?.includes(seed)) {
+        if (item.standings[position]?.includes(seed)) {
           allScenarios = [...allScenarios, item.scenario];
         }
       }
