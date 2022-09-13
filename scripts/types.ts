@@ -67,3 +67,13 @@ export type LeagueSolver = (
   scenario: CompleteScenario,
   configuration: LeagueConfiguration
 ) => SolvedScenario;
+
+type ChampionshipPointsConfiguration = {
+  previousPointsPerSeed: ChampionshipPointsTable;
+  championshipPointsTable: ChampionshipPointsTable;
+};
+
+export type ChampionshipPointsSolver = (
+  solvedScenario: SolvedScenario,
+  configuration: ChampionshipPointsConfiguration
+) => SolvedScenario;

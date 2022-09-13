@@ -1,4 +1,10 @@
-import { CompleteScenario, LeagueSolver, Match, Standings } from "../types";
+import {
+  ChampionshipPointsSolver,
+  CompleteScenario,
+  LeagueSolver,
+  Match,
+  Standings,
+} from "../types";
 
 export const getLoser = (match: Match) =>
   match.result === 1 ? match.seed1 : match.seed2;
@@ -65,6 +71,61 @@ export const leagueSolver: LeagueSolver = (scenario, configuration) => {
 
   return {
     scenario,
+    standings,
+  };
+};
+
+export const championshipPointsSolver: ChampionshipPointsSolver = (
+  solvedScenario,
+  { previousPointsPerSeed, championshipPointsTable }
+) => {
+  let seedsWithPoints: {
+    seed: number;
+    points: number;
+  }[] = [];
+
+  for (const standingsPosition in solvedScenario.standings) {
+    const seed = solvedScenario.standings[standingsPosition][0];
+    seedsWithPoints = [
+      ...seedsWithPoints,
+      {
+        seed,
+        points:
+          championshipPointsTable[standingsPosition] +
+          previousPointsPerSeed[seed],
+      },
+    ];
+  }
+
+  seedsWithPoints = seedsWithPoints.sort((a, b) =>
+    a.points > b.points
+      ? -1
+      : b.points > a.points
+      ? 1
+      : previousPointsPerSeed[a.seed] < previousPointsPerSeed[b.seed]
+      ? -1
+      : previousPointsPerSeed[b.seed] < previousPointsPerSeed[a.seed]
+      ? 1
+      : 0
+  );
+
+  if (
+    seedsWithPoints[5].points === seedsWithPoints[6].points &&
+    previousPointsPerSeed[seedsWithPoints[5].seed] ===
+      previousPointsPerSeed[seedsWithPoints[6].seed]
+  ) {
+    throw Error(
+      `Two teams have the same championshipPoints and summerPoints in positions 6 and 7 for scenario ${solvedScenario.scenario}`
+    );
+  }
+
+  let standings: Standings = {};
+  for (let i = 0; i < seedsWithPoints.length; i++) {
+    standings[i + 1] = [seedsWithPoints[i].seed];
+  }
+
+  return {
+    scenario: solvedScenario.scenario,
     standings,
   };
 };

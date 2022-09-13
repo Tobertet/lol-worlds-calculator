@@ -4,17 +4,20 @@ import { argv } from "process";
 import { worldsGroupsLeagueConfiguration } from "./configurations/worlds/groupsLeague";
 import { lcsConfiguration } from "./configurations/lcs";
 import { lecConfiguration } from "./configurations/lec";
+import { lckConfiguration } from "./configurations/lck";
 
 type AvailableConfigurations = {
   worldsGroups: NewChampionshipConfiguration;
   lec: NewChampionshipConfiguration;
   lcs: NewChampionshipConfiguration;
+  lck: NewChampionshipConfiguration;
 };
 
 const availableConfigurations: AvailableConfigurations = {
   worldsGroups: worldsGroupsLeagueConfiguration,
   lec: lecConfiguration,
   lcs: lcsConfiguration,
+  lck: lckConfiguration,
 };
 
 if (!argv[2]) {
