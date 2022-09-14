@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { playInsScenarios } from "../championships/worlds/playInsScenarios";
+import { groupsLeagueScenarios } from "../championships/worlds/groupsLeagueScenarios";
 import { Team } from "../types";
 import { LeagueMatches, ReducedScenario } from "./LeagueMatches";
 import { PlayInGroupStandings } from "./PlayInGroupStandings";
@@ -43,7 +43,7 @@ export const PlayInGroupLeague: FC<Props> = ({ teams }) => {
       </div>
       <div style={{ width: "100%", margin: "5%" }}>
         <PlayInGroupStandings
-          positionScenarios={playInsScenarios}
+          positionScenarios={groupsLeagueScenarios}
           scenario={scenario}
           teams={teams}
         />

@@ -12,7 +12,7 @@ export type Standings = {
   [position: number]: number[];
 };
 
-type SolvedScenario = {
+export type SolvedScenario = {
   scenario: CompleteScenario;
   standings: Standings;
 };
@@ -31,8 +31,13 @@ export type ChampionshipPointsTable = {
   [position: number]: number;
 };
 
+type ScenarioMetadata = {
+  share: number;
+};
+
 export type ReducedScenario = {
   [match: number]: MatchResult;
+  meta?: ScenarioMetadata;
 };
 
 type SeedScenarios = {

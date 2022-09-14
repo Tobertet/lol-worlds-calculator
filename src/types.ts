@@ -13,8 +13,13 @@ export type ProcessedTeam = {
 
 export type MatchResult = 1 | 0 | undefined;
 
+type ScenarioMetadata = {
+  share: number;
+};
+
 export type ReducedScenario = {
   [match: number]: MatchResult;
+  meta?: ScenarioMetadata;
 };
 
 export type SeedScenarios = {

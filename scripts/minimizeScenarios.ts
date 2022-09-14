@@ -8,12 +8,14 @@ const canBeUnited = (
   if (
     scenario1[dimension] === scenario2[dimension] ||
     scenario1[dimension] === undefined ||
-    scenario2[dimension] === undefined
+    scenario2[dimension] === undefined ||
+    scenario1.meta?.share !== scenario2.meta?.share
   ) {
     return false;
   }
   for (const index of Object.keys(scenario1)) {
     if (
+      index !== "meta" &&
       parseInt(index) !== dimension &&
       scenario1[index] !== scenario2[index]
     ) {
@@ -22,6 +24,7 @@ const canBeUnited = (
   }
   for (const index of Object.keys(scenario2)) {
     if (
+      index !== "meta" &&
       parseInt(index) !== dimension &&
       scenario1[index] !== scenario2[index]
     ) {
@@ -41,7 +44,7 @@ const union = (
   }
   let union: ReducedScenario = {};
   for (const index of Object.keys(scenario1)) {
-    if (parseInt(index) !== dimension) {
+    if (index === "meta" || parseInt(index) !== dimension) {
       union = { ...union, [index]: scenario1[index] };
     }
   }
@@ -55,10 +58,12 @@ const groupScenarios = (
 ) => {
   let groupedScenarios: ReducedScenario[] = [];
   let ungroupedScenarios = scenarios.filter(
-    (scenario) => Object.keys(scenario).length !== size + 1
+    (scenario) =>
+      Object.keys(scenario).filter((key) => key !== "meta").length !== size + 1
   );
   let scenariosToGroup = scenarios.filter(
-    (scenario) => Object.keys(scenario).length === size + 1
+    (scenario) =>
+      Object.keys(scenario).filter((key) => key !== "meta").length === size + 1
   );
 
   for (let dimension = dimensions; dimension > 0; dimension--) {
@@ -103,7 +108,9 @@ export const minimizeScenarios = (
     ];
   }
   for (const scenario of minimizedScenarios) {
-    amountOfScenariosBySize[Object.keys(scenario).length]++;
+    amountOfScenariosBySize[
+      Object.keys(scenario).filter((key) => key !== "meta").length
+    ]++;
   }
   let totalScenariosAfterMinimizing = 0;
   for (const size of Object.keys(amountOfScenariosBySize)) {

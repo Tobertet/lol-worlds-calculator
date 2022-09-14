@@ -48,18 +48,28 @@ export const getProbabilityForPosition = (
 
   let processedSeeds: { seed: number; probability: number }[] = [];
   for (const seed in seedScenarios) {
-    let processedScenarios: { scenarioLength: number; matchLength: number }[] =
-      [];
+    let processedScenarios: {
+      scenarioLength: number;
+      matchLength: number;
+      share: number;
+    }[] = [];
     for (const seedScenario of seedScenarios[seed]) {
-      const matchingElements = Object.keys(scenario).filter((val) =>
-        Object.keys(seedScenario).includes(val)
-      );
+      const matchingElements = Object.keys(scenario)
+        .filter((key) => key !== "meta")
+        .filter((val) =>
+          Object.keys(seedScenario)
+            .filter((key) => key !== "meta")
+            .includes(val)
+        );
       if (intersect([scenario, seedScenario])) {
         processedScenarios = [
           ...processedScenarios,
           {
             matchLength: matchingElements.length,
-            scenarioLength: Object.keys(seedScenario).length,
+            scenarioLength: Object.keys(seedScenario).filter(
+              (key) => key !== "meta"
+            ).length,
+            share: seedScenario.meta?.share || 1,
           },
         ];
       }
@@ -67,10 +77,11 @@ export const getProbabilityForPosition = (
 
     let amount = 0;
     for (const processedScenario of processedScenarios) {
-      amount += Math.pow(
-        2,
-        processedScenario.matchLength - processedScenario.scenarioLength
-      );
+      amount +=
+        Math.pow(
+          2,
+          processedScenario.matchLength - processedScenario.scenarioLength
+        ) * processedScenario.share;
     }
     processedSeeds = [
       ...processedSeeds,
