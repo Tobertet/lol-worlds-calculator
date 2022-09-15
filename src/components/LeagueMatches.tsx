@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Colors } from "../theme/colors";
 import { Team } from "../types";
 import { getTeam } from "../utils/functions";
 
@@ -70,7 +71,7 @@ const LeagueMatch: FC<LeagueMatchProps> = ({
   <div
     style={{
       display: "flex",
-      background: "#131313",
+      background: Colors.black,
       justifyContent: "space-evenly",
       marginBottom: "2px",
     }}
@@ -82,7 +83,9 @@ const LeagueMatch: FC<LeagueMatchProps> = ({
         flexDirection: "row",
         alignItems: "center",
         cursor: team1.name === "TBD" ? "not-allowed" : "pointer",
-        borderLeft: `3px solid ${result === 0 ? "#1A76E3" : "transparent"}`,
+        borderLeft: `3px solid ${
+          result === 0 ? Colors.primary : "transparent"
+        }`,
         justifyContent: "center",
       }}
       onClick={() => {
@@ -119,7 +122,9 @@ const LeagueMatch: FC<LeagueMatchProps> = ({
         flexDirection: "row",
         alignItems: "center",
         cursor: team1.name === "TBD" ? "not-allowed" : "pointer",
-        borderRight: `5px solid ${result === 1 ? "#1A76E3" : "transparent"}`,
+        borderRight: `5px solid ${
+          result === 1 ? Colors.primary : "transparent"
+        }`,
         justifyContent: "center",
       }}
       onClick={() => {

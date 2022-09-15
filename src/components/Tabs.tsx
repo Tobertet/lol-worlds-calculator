@@ -1,4 +1,5 @@
 import { FC, ReactNode, useState } from "react";
+import { Colors } from "../theme/colors";
 import { ChampionshipID } from "../types";
 import "./Tabs.css";
 
@@ -16,7 +17,7 @@ export const Tabs: FC<Props> = ({ tabs }) => {
         style={{
           display: "flex",
           justifyContent: "space-evenly",
-          background: "#131313",
+          background: Colors.black,
           position: "fixed",
           width: "100%",
           zIndex: 1,
@@ -30,7 +31,7 @@ export const Tabs: FC<Props> = ({ tabs }) => {
               borderBottomWidth: 4,
               borderBottomStyle: "solid",
               borderBottomColor:
-                selectedTab === tab.id ? "#1A76E3" : "transparent",
+                selectedTab === tab.id ? Colors.primary : "transparent",
               display: "flex",
               flexDirection: "column",
               padding: "8px 16px",

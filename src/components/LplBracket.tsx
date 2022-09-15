@@ -15,6 +15,7 @@ import { Position } from "./Position";
 import Background from "../championships/lpl/background.png";
 import { lplTeams as teams } from "../championships/lpl/teams";
 import { lplScenarios } from "../championships/lpl/scenarios";
+import { Colors } from "../theme/colors";
 
 const matchPositions: { topPx: number; leftPx: number }[] = [
   { leftPx: 100, topPx: 115 },
@@ -211,14 +212,14 @@ export const LplBracket: FC<Props> = () => {
                   *The 1st and 2nd teams in Regional Qualifiers have{" "}
                   <strong
                     style={{
-                      color: "#1A76E3",
+                      color: Colors.primary,
                       fontSize: "1.4vw",
                     }}
                   >
                     75%
                   </strong>{" "}
                   of scenarios to make it to worlds while the 3rd and 4th have{" "}
-                  <strong style={{ color: "#1A76E3", fontSize: "1.4vw" }}>
+                  <strong style={{ color: Colors.primary, fontSize: "1.4vw" }}>
                     25%
                   </strong>
                   .

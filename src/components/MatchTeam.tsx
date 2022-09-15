@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Colors } from "../theme/colors";
 import { ProcessedTeam } from "../types";
 import { toPercentage } from "../utils/functions";
 
@@ -18,7 +19,7 @@ export const MatchTeam: FC<Props> = ({ team, onSelect, selected }) => (
       minHeight: "40%",
       padding: "4%",
       cursor: team.name === "TBD" ? "not-allowed" : "pointer",
-      borderLeft: `3px solid ${selected ? "#1A76E3" : "transparent"}`,
+      borderLeft: `3px solid ${selected ? Colors.primary : "transparent"}`,
     }}
     onClick={() => {
       if (team.name !== "TBD" && onSelect) {
@@ -57,7 +58,7 @@ export const MatchTeam: FC<Props> = ({ team, onSelect, selected }) => (
     <p
       style={{
         margin: 0,
-        color: team.percentage > 0 ? "#1A76E3" : "gray",
+        color: team.percentage > 0 ? Colors.primary : "gray",
         fontSize: "1vw",
         fontWeight: "bold",
         minWidth: "35%",

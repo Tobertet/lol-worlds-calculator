@@ -14,6 +14,7 @@ import { Position } from "./Position";
 import Background from "../championships/lck/background.png";
 import { lckTeams as teams } from "../championships/lck/teams";
 import { lckScenarios } from "../championships/lck/scenarios";
+import { Colors } from "../theme/colors";
 
 const matchPositions: { topPx: number; leftPx: number }[] = [
   { leftPx: 281, topPx: 115 },
@@ -154,14 +155,14 @@ export const LckBracket: FC<Props> = () => {
                   *The 1st and 2nd teams in Regional Qualifiers have{" "}
                   <strong
                     style={{
-                      color: "#1A76E3",
+                      color: Colors.primary,
                       fontSize: "1.4vw",
                     }}
                   >
                     75%
                   </strong>{" "}
                   of scenarios to make it to worlds while the 3rd and 4th have{" "}
-                  <strong style={{ color: "#1A76E3", fontSize: "1.4vw" }}>
+                  <strong style={{ color: Colors.primary, fontSize: "1.4vw" }}>
                     25%
                   </strong>
                   .

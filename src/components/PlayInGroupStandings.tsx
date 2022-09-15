@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { PositionScenarios, Team } from "../types";
 import { ReducedScenario } from "./LeagueMatches";
 import { getProbabilityForPosition } from "../utils/functions";
-import { LabelColors, Standings } from "./Standings";
+import { Standings } from "./Standings";
 
 type Props = {
   scenario: ReducedScenario;
@@ -34,7 +34,7 @@ export const PlayInGroupStandings: FC<Props> = ({
       positions={positionCandidates.map((candidates, index) => ({
         candidates,
         labelText: `${index + 1}`,
-        labelColor: LabelColors.blue,
+        labelColor: "blue",
       }))}
     />
   );

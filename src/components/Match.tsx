@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef } from "react";
+import { Colors } from "../theme/colors";
 import { MatchResult, ProcessedTeam } from "../types";
-import "./Match.css";
 import { MatchTeam } from "./MatchTeam";
 
 const undefinedTeam: ProcessedTeam = {
@@ -59,7 +59,17 @@ export const Match: FC<Props> = ({
   return (
     <div
       className="container"
-      style={{ top: `${getTop(topPx)}%`, left: `${getLeft(leftPx)}%` }}
+      style={{
+        top: `${getTop(topPx)}%`,
+        left: `${getLeft(leftPx)}%`,
+        width: "9.765625%",
+        height: "7.942708333%",
+        position: "absolute",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
+        backgroundColor: Colors.black,
+      }}
     >
       <MatchTeam
         team={team1 || undefinedTeam}
@@ -74,7 +84,14 @@ export const Match: FC<Props> = ({
         }}
         selected={team1 && team2 && result === 0}
       />
-      <div className="divider" />
+      <div
+        className="divider"
+        style={{
+          minHeight: "1px",
+          width: "100%",
+          backgroundColor: Colors.primary,
+        }}
+      />
       <MatchTeam
         team={team2 || undefinedTeam}
         onSelect={() => {
