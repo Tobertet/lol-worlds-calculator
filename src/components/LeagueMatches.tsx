@@ -86,7 +86,7 @@ const LeagueMatch: FC<LeagueMatchProps> = ({
         justifyContent: "center",
       }}
       onClick={() => {
-        if (onResult) {
+        if (team1.name !== "TBD" && team2.name !== "TBD" && onResult) {
           if (result === 0) {
             onResult(undefined);
           } else {
@@ -110,7 +110,7 @@ const LeagueMatch: FC<LeagueMatchProps> = ({
     </div>
     <div
       className="divider"
-      style={{ minWidth: "1px", backgroundColor: "gray" }}
+      style={{ minWidth: "1px", maxWidth: "1px", backgroundColor: "gray" }}
     ></div>
     <div
       style={{
@@ -123,7 +123,7 @@ const LeagueMatch: FC<LeagueMatchProps> = ({
         justifyContent: "center",
       }}
       onClick={() => {
-        if (team2.name !== "TBD" && onResult) {
+        if (team1.name !== "TBD" && team2.name !== "TBD" && onResult) {
           if (result === 1) {
             onResult(undefined);
           } else {

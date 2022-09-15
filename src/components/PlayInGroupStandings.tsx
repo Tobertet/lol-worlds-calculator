@@ -20,15 +20,13 @@ export const PlayInGroupStandings: FC<Props> = ({
   >([]);
 
   useEffect(() => {
-    setPositionCandidates([
-      getProbabilityForPosition(1, scenario, positionScenarios),
-      getProbabilityForPosition(2, scenario, positionScenarios),
-      getProbabilityForPosition(3, scenario, positionScenarios),
-      getProbabilityForPosition(4, scenario, positionScenarios),
-      getProbabilityForPosition(5, scenario, positionScenarios),
-      getProbabilityForPosition(6, scenario, positionScenarios),
-    ]);
-  }, [scenario, positionScenarios]);
+    const positions = teams.map((team) => team.seed);
+    setPositionCandidates(
+      positions.map((position) =>
+        getProbabilityForPosition(position, scenario, positionScenarios)
+      )
+    );
+  }, [scenario, positionScenarios, teams]);
 
   return (
     <Standings

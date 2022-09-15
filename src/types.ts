@@ -30,7 +30,7 @@ export type PositionScenarios = {
   [position: number]: SeedScenarios;
 };
 
-export type ChampionshipID = "lec" | "lcs" | "lpl" | "lck";
+export type ChampionshipID = "lec" | "lcs" | "lpl" | "lck" | "worlds";
 
 export type Match = {
   seed1?: number;
