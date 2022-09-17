@@ -1,13 +1,29 @@
 import { FC } from "react";
+import { Colors } from "../../theme/colors";
 
-type Props = {
+export type TableRowItem = {
   imageUri: string;
   imageAlt?: string;
   text: string;
+  onClick?: () => void;
+  highlight?: boolean;
+  disabled?: boolean;
 };
 
-export const RowItem: FC<Props> = ({ imageUri, imageAlt, text }) => (
+type Props = TableRowItem;
+
+export const RowItem: FC<Props> = ({
+  imageUri,
+  imageAlt,
+  text,
+  onClick,
+  highlight = true,
+  disabled = true,
+}) => (
   <div
+    onClick={() => {
+      if (!disabled && onClick) onClick();
+    }}
     style={{
       display: "flex",
       flexDirection: "column",
@@ -15,6 +31,8 @@ export const RowItem: FC<Props> = ({ imageUri, imageAlt, text }) => (
       minWidth: "10%",
       alignItems: "center",
       height: "100%",
+      cursor: disabled ? "not-allowed" : onClick ? "pointer" : "default",
+      opacity: disabled ? 0.5 : 1,
     }}
   >
     <img
@@ -22,7 +40,14 @@ export const RowItem: FC<Props> = ({ imageUri, imageAlt, text }) => (
       src={imageUri}
       alt={imageAlt}
     />
-    <span style={{ fontSize: "1vw", textAlign: "center", color: "#eee" }}>
+    <span
+      style={{
+        fontSize: "1vw",
+        textAlign: "center",
+        color: highlight ? Colors.primary : Colors.white,
+        fontWeight: highlight ? "bold" : "normal",
+      }}
+    >
       {text}
     </span>
   </div>
