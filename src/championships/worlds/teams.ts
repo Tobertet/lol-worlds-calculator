@@ -1,5 +1,71 @@
 import { Team } from "../../types";
 
+export const playInsGroup1: Team[] = [
+  {
+    name: "FNC",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1631819669150_fnc-2021-worlds.png",
+    seed: 1,
+  },
+  {
+    name: "BYG",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1644501610149_BYG_White.png",
+    seed: 2,
+  },
+  {
+    name: "DFM",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1631820630246_dfm-2021-worlds.png",
+    seed: 3,
+  },
+  {
+    name: "EG",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1592590374862_EvilGeniusesEG-01-FullonDark.png",
+    seed: 4,
+  },
+  {
+    name: "LOUD",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2FLogo-LOUD-Esports_Original.png",
+    seed: 5,
+  },
+  {
+    name: "CHF",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1642465931119_ChiefsLogo1000x1000.png",
+    seed: 6,
+  },
+];
+
+export const playInsGroup2: Team[] = [
+  {
+    name: "DRX",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1631819456274_dwg-kia-2021-worlds.png",
+    seed: 1,
+  },
+  {
+    name: "RNG",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1631819360134_rng-2021-worlds.png",
+    seed: 2,
+  },
+  {
+    name: "SGB",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1636524131703_900px-Saigon_Buffalo.png",
+    seed: 3,
+  },
+  {
+    name: "MAD",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1631819614211_mad-2021-worlds.png",
+    seed: 4,
+  },
+  {
+    name: "IW",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1654773501062_DenizBankIstanbulWildcatsWhite1.png",
+    seed: 5,
+  },
+  {
+    name: "ISG",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fassets.lolesports.com%2Fwatch%2Fteam-tbd.png",
+    seed: 6,
+  },
+];
+
 export const groupATeams: Team[] = [
   {
     name: "C9",

@@ -17,8 +17,8 @@ export const RowItem: FC<Props> = ({
   imageAlt,
   text,
   onClick,
-  highlight = true,
-  disabled = true,
+  highlight = false,
+  disabled = false,
 }) => (
   <div
     onClick={() => {
@@ -32,7 +32,7 @@ export const RowItem: FC<Props> = ({
       alignItems: "center",
       height: "100%",
       cursor: disabled ? "not-allowed" : onClick ? "pointer" : "default",
-      opacity: disabled ? 0.5 : 1,
+      opacity: disabled ? 0.2 : 1,
     }}
   >
     <img
