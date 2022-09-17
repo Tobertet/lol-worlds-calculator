@@ -37,8 +37,8 @@ export const TableRow: FC<Props> = ({
         {labelText}.{" "}
       </span>
     )}
-    {items.map((item) => (
-      <RowItem key={item.text} {...item} />
+    {items.map((item, index) => (
+      <RowItem key={index} {...item} />
     ))}
   </div>
 );

@@ -36,7 +36,8 @@ export const LeagueMatches: FC<Props> = ({
   <>
     {matches.map((match, index) => (
       <LeagueMatch
-        key={`${match.team1}:${match.team2}`}
+        // key={`${match.team1}:${match.team2}`}
+        key={index}
         team1={getTeam(teams, match.team1) || undefinedTeam}
         team2={getTeam(teams, match.team2) || undefinedTeam}
         result={scenario[index + 1]}
