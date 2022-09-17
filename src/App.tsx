@@ -5,6 +5,7 @@ import { LecBracket } from "./components/LecBracket";
 import { LplBracket } from "./components/LplBracket";
 import { Tabs } from "./components/Tabs";
 import { Worlds } from "./components/Worlds";
+import { Colors } from "./theme/colors";
 
 const App: FC = () => (
   <>
@@ -40,7 +41,7 @@ const App: FC = () => (
     <div style={{ marginBottom: "100px" }}>
       <h3
         style={{
-          color: "#eee",
+          color: Colors.white,
           fontSize: "1vw",
           fontWeight: 400,
           textAlign: "center",
@@ -58,7 +59,7 @@ const App: FC = () => (
       </h3>
       <h3
         style={{
-          color: "#eee",
+          color: Colors.white,
           fontSize: "1vw",
           fontWeight: 400,
           textAlign: "center",

@@ -97,7 +97,7 @@ export const LckBracket: FC<Props> = () => {
             <div className="relative">
               <h1
                 style={{
-                  color: "#eee",
+                  color: Colors.white,
                   textAlign: "center",
                   position: "absolute",
                   top: "4%",

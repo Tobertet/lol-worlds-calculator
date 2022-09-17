@@ -16,6 +16,7 @@ import { Position } from "./Position";
 import Background from "../championships/lec/background.png";
 import { lecTeams as teams } from "../championships/lec/teams";
 import { lecScenarios } from "../championships/lec/scenarios";
+import { Colors } from "../theme/colors";
 
 const matchPositions: { topPx: number; leftPx: number }[] = [
   { leftPx: 100, topPx: 115 },
@@ -110,7 +111,7 @@ export const LecBracket: FC<Props> = () => {
             <div className="relative">
               <h1
                 style={{
-                  color: "#eee",
+                  color: Colors.white,
                   textAlign: "center",
                   position: "absolute",
                   top: "4%",

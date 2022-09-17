@@ -14,6 +14,7 @@ import { Position } from "./Position";
 import Background from "../championships/lcs/background.png";
 import { lcsTeams as teams } from "../championships/lcs/teams";
 import { lcsScenarios } from "../championships/lcs/scenarios";
+import { Colors } from "../theme/colors";
 
 const matchPositions: { topPx: number; leftPx: number }[] = [
   { leftPx: 100, topPx: 115 },
@@ -148,7 +149,7 @@ export const LcsBracket: FC<Props> = () => {
             <div className="relative">
               <h1
                 style={{
-                  color: "#eee",
+                  color: Colors.white,
                   textAlign: "center",
                   position: "absolute",
                   top: "4%",
