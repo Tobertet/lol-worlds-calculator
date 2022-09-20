@@ -2,6 +2,7 @@ export type Team = {
   name: string;
   icon: string;
   seed: number;
+  region?: Region;
 };
 
 export type ProcessedTeam = {
@@ -29,6 +30,19 @@ export type SeedScenarios = {
 export type PositionScenarios = {
   [position: number]: SeedScenarios;
 };
+
+export type Region =
+  | "lec"
+  | "lpl"
+  | "lck"
+  | "lcs"
+  | "pcs"
+  | "vcs"
+  | "ljl"
+  | "lco"
+  | "tcl"
+  | "lla"
+  | "cblol";
 
 export type ChampionshipID = "lec" | "lcs" | "lpl" | "lck" | "worlds";
 
