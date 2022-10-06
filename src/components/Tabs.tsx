@@ -5,10 +5,11 @@ import "./Tabs.css";
 
 type Props = {
   tabs: { id: ChampionshipID; icon: string; content: ReactNode }[];
+  initialTab?: ChampionshipID
 };
 
-export const Tabs: FC<Props> = ({ tabs }) => {
-  const [selectedTab, setSelectedTab] = useState<ChampionshipID>("lec");
+export const Tabs: FC<Props> = ({ tabs, initialTab = "worlds" }) => {
+  const [selectedTab, setSelectedTab] = useState<ChampionshipID>(initialTab);
 
   return (
     <div className="margin">

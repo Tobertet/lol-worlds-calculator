@@ -72,7 +72,7 @@ export const playInsGroup2: Team[] = [
   },
   {
     name: "ISG",
-    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fassets.lolesports.com%2Fwatch%2Fteam-tbd.png",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2FISG.png",
     seed: 6,
     region: "lla",
   },
@@ -145,7 +145,7 @@ export const groupCTeams: Team[] = [
   },
   {
     name: "GAM",
-    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fassets.lolesports.com%2Fwatch%2Fteam-tbd.png",
+    icon: "https://am-a.akamaihd.net/image?resize=60:60&f=http%3A%2F%2Fstatic.lolesports.com%2Fteams%2F1643263093448_GAMyellow.png",
     seed: 3,
     region: "vcs",
   },
