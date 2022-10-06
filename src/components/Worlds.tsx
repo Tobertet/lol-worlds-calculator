@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react";
+import { initialPlayInsQualifiedTeams } from "../championships/worlds/state";
 import {
   groupATeams,
   groupBTeams,
@@ -21,7 +22,7 @@ const groups: { name: "A" | "B" | "C" | "D"; teams: Team[] }[] = [
 
 export const Worlds: FC = () => {
   const [playInsQualifiedTeams, setPlayInsQualifiedTeams] = useState<Team[]>(
-    []
+    initialPlayInsQualifiedTeams
   );
 
   const [draftedGroups, setDraftedGroups] = useState<{
