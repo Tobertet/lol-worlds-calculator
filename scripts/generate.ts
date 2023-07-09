@@ -3,9 +3,9 @@ import { ChampionshipConfiguration } from "./types";
 import { argv } from "process";
 import { worldsGroupsLeagueConfiguration } from "./configurations/worlds/groupsLeague";
 import { lcsConfiguration } from "./configurations/lcs";
-import { lecConfiguration } from "./configurations/lec";
 import { lckConfiguration } from "./configurations/lck";
 import { lplConfiguration } from "./configurations/lpl";
+import { lec2Configuration } from "./configurations/lec_2";
 
 type AvailableConfigurations = {
   worldsGroups: ChampionshipConfiguration;
@@ -17,7 +17,7 @@ type AvailableConfigurations = {
 
 const availableConfigurations: AvailableConfigurations = {
   worldsGroups: worldsGroupsLeagueConfiguration,
-  lec: lecConfiguration,
+  lec: lec2Configuration,
   lcs: lcsConfiguration,
   lck: lckConfiguration,
   lpl: lplConfiguration,

@@ -8,12 +8,14 @@ type Props = {
   scenario: ReducedScenario;
   teams: Team[];
   positionScenarios: PositionScenarios;
+  maxPositions?: number;
 };
 
 export const PlayInGroupStandings: FC<Props> = ({
   teams,
   scenario,
   positionScenarios,
+  maxPositions,
 }) => {
   const [positionCandidates, setPositionCandidates] = useState<
     { seed: number; probability: number }[][]
@@ -31,11 +33,13 @@ export const PlayInGroupStandings: FC<Props> = ({
   return (
     <Standings
       teams={teams}
-      positions={positionCandidates.map((candidates, index) => ({
-        candidates,
-        labelText: `${index + 1}`,
-        labelColor: "blue",
-      }))}
+      positions={positionCandidates
+        .slice(0, maxPositions || positionCandidates.length)
+        .map((candidates, index) => ({
+          candidates,
+          labelText: `${index + 1}`,
+          labelColor: "blue",
+        }))}
     />
   );
 };

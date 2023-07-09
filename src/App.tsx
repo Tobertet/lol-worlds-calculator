@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { LckBracket } from "./components/LckBracket";
 import { LcsBracket } from "./components/LcsBracket";
-import { LecBracket } from "./components/LecBracket";
 import { LplBracket } from "./components/LplBracket";
 import { Tabs } from "./components/Tabs";
 import { Worlds } from "./components/Worlds";
 import { Colors } from "./theme/colors";
+import { Lec2Bracket } from "./components/Lec2Bracket";
 
 const App: FC = () => (
   <>
@@ -14,7 +14,7 @@ const App: FC = () => (
         {
           id: "lec",
           icon: "https://am-a.akamaihd.net/image?resize=60:&f=http%3A%2F%2Fstatic.lolesports.com%2Fleagues%2F1592516184297_LEC-01-FullonDark.png",
-          content: <LecBracket />,
+          content: <Lec2Bracket />,
         },
         {
           id: "lcs",
@@ -37,6 +37,7 @@ const App: FC = () => (
           content: <Worlds />,
         },
       ]}
+      initialTab="lec"
     />
     <div style={{ marginBottom: "100px" }}>
       <h3
