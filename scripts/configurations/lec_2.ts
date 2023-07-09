@@ -87,12 +87,12 @@ const lec2BracketSolver: BracketSolver = (scenario) => {
   const match13: Match = {
     seed1: getLoser(match11),
     seed2: getWinner(match12),
-    result: getResult(scenario, 12),
+    result: getResult(scenario, 13),
   };
   const match14: Match = {
     seed1: getWinner(match11),
     seed2: getWinner(match13),
-    result: getResult(scenario, 12),
+    result: getResult(scenario, 14),
   };
   return {
     scenario,
