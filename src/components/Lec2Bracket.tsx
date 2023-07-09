@@ -165,7 +165,7 @@ export const Lec2Bracket: FC<Props> = () => {
                   fontSize: "2.5vw",
                 }}
               >
-                Season Finals Probability
+                Season Finals Probability (2023)
               </h1>
               <MatchComponent
                 leftPx={100}

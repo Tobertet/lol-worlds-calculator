@@ -96,7 +96,7 @@ export const Worlds: FC = () => {
           fontSize: "3vw",
         }}
       >
-        Play-Ins Stage
+        Play-Ins Stage (2022)
       </h1>
       <p
         style={{
@@ -307,7 +307,7 @@ export const Worlds: FC = () => {
           fontSize: "3vw",
         }}
       >
-        Main Stage
+        Main Stage (2022)
       </h1>
 
       <div

@@ -119,7 +119,7 @@ export const LecBracket: FC<Props> = () => {
                   fontSize: "2.5vw",
                 }}
               >
-                Worlds Probability
+                Worlds Probability (2022)
               </h1>
               {generateMatches(results).map((match, index) => (
                 <MatchComponent
