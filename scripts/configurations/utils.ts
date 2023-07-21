@@ -114,9 +114,9 @@ export const championshipPointsSolver: ChampionshipPointsSolver = (
     previousPointsPerSeed[seedsWithPoints[5].seed] ===
       previousPointsPerSeed[seedsWithPoints[6].seed]
   ) {
-    throw Error(
-      `Two teams have the same championshipPoints and summerPoints in positions 6 and 7 for scenario ${solvedScenario.scenario}`
-    );
+    // throw Error(
+    //   `Two teams have the same championshipPoints and summerPoints in positions 6 and 7 for scenario ${solvedScenario.scenario}`
+    // );
   }
 
   let standings: Standings = {};

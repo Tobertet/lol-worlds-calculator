@@ -26,15 +26,15 @@ const summerPointsTable: ChampionshipPointsTable = {
 
 const previousPointsPerSeed: ChampionshipPointsTable = {
   1: 70,
-  2: 90,
-  3: 20,
-  4: 10,
-  5: 30,
+  2: 30,
+  3: 50,
+  4: 90,
+  5: 10,
   6: 20,
-  7: 10,
-  8: 50,
+  7: 20,
+  8: 0,
   9: 0,
-  10: 0,
+  10: 10,
 };
 
 const lplBracketSolver: BracketSolver = (scenario) => {

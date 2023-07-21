@@ -161,7 +161,7 @@ export const LplBracket: FC<Props> = () => {
                   fontSize: "2.5vw",
                 }}
               >
-                Worlds Probability (2022)
+                Worlds Probability (2023)
               </h1>
               {generateMatches(results).map((match, index) => (
                 <MatchComponent
